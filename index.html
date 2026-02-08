@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -30,11 +30,11 @@
         <div class="space-x-6 hidden md:block">
             <a href="#proyectos" class="hover:text-primary transition">Projects</a>
             <a href="#skills" class="hover:text-primary transition">Skills</a>
-            <a href="#contacto" class="hover:text-primary transition">Contacto</a>
+            <a href="#contacto" class="hover:text-primary transition">Contact</a>
         </div>
     </nav>
 
-    <header class="max-w-5xl mx-auto px-6 py-20 md:py-32 grid md:grid-cols-2 gap-10 items-center">
+    <header class="max-w-6xl mx-auto px-6 py-20 md:py-32 grid grid-cols-1 md:grid-cols-[1fr_1.4fr] gap-12 items-center">
         <!-- <div>
             <div class="inline-block px-3 py-1 mb-4 text-xs font-semibold tracking-wider text-primary uppercase bg-blue-900/30 rounded-full">
                 AI Enginner
@@ -56,25 +56,81 @@
                 </a>
             </div>
         </div> -->
+        <div class="max-w-md">
+        <h1 class="text-4xl md:text-5xl font-bold text-white mb-2">
+        Welcome.
+        </h1>
+        <p class="text-gray-400 mb-8">
+        This is my engineer profile.
+        </p>
+
+        <div class="flex items-center gap-4">
+        <!-- GitHub -->
+        <a
+            href="https://github.com/ArturoAlcorta"
+            target="_blank"
+            aria-label="GitHub"
+            class="text-gray-400 hover:text-white transition hover:scale-110 transition-transform hover:drop-shadow-[0_0_6px_rgba(59,130,246,0.6)]"
+        >
+            <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="w-6 h-6 fill-current"
+            viewBox="0 0 24 24"
+            >
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.21 11.38.6.11.82-.26.82-.58v-2.17c-3.34.73-4.04-1.61-4.04-1.61-.55-1.4-1.34-1.77-1.34-1.77-1.09-.75.08-.73.08-.73 1.2.08 1.83 1.23 1.83 1.23 1.07 1.83 2.8 1.3 3.49.99.11-.78.42-1.3.76-1.6-2.66-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.12-3.17 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 013-.4c1.02 0 2.05.14 3 .4 2.28-1.55 3.29-1.23 3.29-1.23.66 1.65.25 2.87.12 3.17.77.84 1.23 1.91 1.23 3.22 0 4.61-2.81 5.62-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.21.69.82.58C20.57 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/>
+            </svg>
+        </a>
+
+        <!-- LinkedIn -->
+        <a
+            href="https://www.linkedin.com/in/ArturoAlcorta"
+            target="_blank"
+            aria-label="LinkedIn"
+            class="text-gray-400 hover:text-blue-500 transition hover:scale-110 transition-transform hover:drop-shadow-[0_0_6px_rgba(59,130,246,0.6)]"
+        >
+            <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="w-6 h-6 fill-current"
+            viewBox="0 0 24 24"
+            >
+            <path d="M22.23 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.46c.98 0 1.77-.77 1.77-1.72V1.72C24 .77 23.21 0 22.23 0zM7.06 20.45H3.56V9h3.5v11.45zM5.31 7.43c-1.12 0-2.03-.91-2.03-2.03 0-1.12.91-2.03 2.03-2.03 1.12 0 2.03.91 2.03 2.03 0 1.12-.91 2.03-2.03 2.03zM20.45 20.45h-3.5v-5.57c0-1.33-.03-3.05-1.86-3.05-1.86 0-2.14 1.45-2.14 2.95v5.67h-3.5V9h3.36v1.56h.05c.47-.89 1.61-1.83 3.31-1.83 3.54 0 4.19 2.33 4.19 5.36v6.36z"/>
+            </svg>
+        </a>
+        </div>
+
+
+        </div>
+
         
-        <div class="bg-card p-6 rounded-xl border border-gray-700 shadow-2xl transform rotate-2 hover:rotate-0 transition duration-500">
+        <div class="bg-card p-6 rounded-xl border border-gray-700 shadow-2xl transform transition duration-500">
             <div class="flex gap-2 mb-4">
                 <div class="w-3 h-3 rounded-full bg-red-500"></div>
                 <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
                 <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                <span class="text-xs text-gray-500 font-mono">// engineer_profile.py</span>
             </div>
-            <pre class="text-sm font-mono text-gray-400 overflow-x-auto">
-<code><span class="text-purple-400">class</span> <span class="text-yellow-300">Developer</span>(Engineer):
+            <pre class="text-xs md:text-sm leading-relaxed font-mono text-gray-400 whitespace-pre-wrap break-words overflow-hidden">
+<code><span class="text-purple-400">class</span> <span class="text-yellow-300">EngineerProfile</span>(Telecom.Engineer):
     <span class="text-purple-400">def</span> <span class="text-blue-400">__init__</span>(self):
         self.name = <span class="text-green-400">"Arturo Alcorta"</span>
         self.role = <span class="text-green-400">"AI Engineer"</span>
         self.currently = <span class="text-green-400">"Técnicas Reunidas, AI R&D Department"</span>
-        self.languages = [<span class="text-green-400">"Spanish (Native)"</span>, <span class="text-green-400">"English (C2 Cambridge)"</span>]
+        self.spoken_languages = [
+            <span class="text-green-400">"Spanish (Native)"</span>, 
+            <span class="text-green-400">"English (C2 Cambridge)"</span>,
+        ]
+        self.current_focus = [
+            <span class="text-green-400">"AI applied to fitness"</span>,
+            <span class="text-green-400">"Multimodal applications"</span>,
+        ]
 
+    @property
     <span class="text-purple-400">def</span> <span class="text-blue-400">skills</span>(self):
-        self.prog_languages = [<span class="text-green-400">"Python"</span>, <span class="text-green-400">"HTMX"</span>, <span class="text-green-400">"MATLAB"</span>]
-        self.frameworks = [<span class="text-green-400">"PyTorch"</span>, <span class="text-green-400">"TensorFlow"</span>, <span class="text-green-400">"Scikit-learn"</span>, <span class="text-green-400">"OpenCV"</span>]
-        self.dev_tools = [<span class="text-green-400">"Docker"</span>, <span class="text-green-400">"Git"</span>, <span class="text-green-400">"MLOps (MLflow, TensorBoard)"</span>]
+        <span class="text-purple-400">return</span> {
+            <span class="text-blue-400">"programming"</span>: [<span class="text-green-400">"Python"</span>, <span class="text-green-400">"HTMX"</span>, <span class="text-green-400">"MATLAB"</span>],
+            <span class="text-blue-400">"frameworks"</span>: [<span class="text-green-400">"PyTorch"</span>, <span class="text-green-400">"Scikit-learn"</span>, <span class="text-green-400">"OpenCV"</span>],
+            <span class="text-blue-400">"dev_tools"</span>: [<span class="text-green-400">"Docker"</span>, <span class="text-green-400">"Git"</span>, <span class="text-green-400">"MLflow"</span>, <span class="text-green-400">"FastAPI"</span>],
+        }
 
         </div>
     </header>
