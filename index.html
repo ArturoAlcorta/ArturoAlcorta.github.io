@@ -15,6 +15,8 @@
                         primary: '#3b82f6', // Un azul estándar
                         dark: '#0f172a',    // Fondo muy oscuro (Slate-900)
                         card: '#1e293b',    // Fondo de tarjetas (Slate-800)
+                        cyan: '#06b6d4',    // Para seccion de articulos publicados
+                        purple: '#8b5cf6',  // Para seccion de proyectos personales
                     }
                 }
             }
@@ -28,18 +30,18 @@
             AA<span class="text-primary">.dev</span>
         </div>
         <div class="space-x-6 hidden md:block">
-            <a href="#proyectos" class="hover:text-primary transition">Projects</a>
-            <a href="#articles" class="hover:text-primary transition">Published Articles</a>
+            <a href="#proyectos" class="hover:text-purple transition">Projects</a>
+            <a href="#articles" class="hover:text-cyan transition">Published Articles</a>
         </div>
     </nav>
 
     <header class="max-w-md md:max-w-2xl lg:max-w-6xl xl:max-w-7xl mx-auto px-6 py-20 grid grid-cols-1 md:grid-cols-[1fr_1.4fr] gap-12 items-center">
         <div class="max-w-md">
-            <h1 class="text-4xl md:text-5xl font-bold text-white mb-2">
-                Welcome to my portfolio!
+            <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">
+                Building the future of AI & Multimodal Applications
             </h1>
-            <p class="text-gray-400 mb-8">
-                This is my engineer profile.
+            <p class="text-gray-400 mb-4">
+                My passion for tech didn't start with massive LLMs, but with a small turtle drawing lines on the screen.
             </p>
 
             <div class="flex items-center gap-4">
@@ -115,13 +117,13 @@
 
     <section id="proyectos" class="max-w-5xl mx-auto px-6 py-12 space-y-4"> <!-- Al poner space-y-4 aqui decimos que esta es la separacion de todos los div dentro de esta seccion, sin tener que definir en cada div -->
         <h2 class="text-3xl font-bold text-white mb-10 flex items-center gap-2">
-            <span class="w-8 h-1 bg-primary rounded-full"></span> Personal Projects
+            <span class="w-8 h-1 bg-purple rounded-full"></span> Personal Projects
         </h2>
 
         <div>
-            <article class="bg-card p-6 rounded-xl border border-gray-700/50 hover:border-primary/50 transition group mb-4">
+            <article class="bg-card p-6 rounded-xl border border-gray-700/50 hover:border-purple/50 transition group mb-4">
     
-                <h3 class="text-xl font-bold text-white mb-2 group-hover:text-primary transition">
+                <h3 class="text-xl font-bold text-white mb-2 group-hover:text-purple transition">
                     Masters Thesis: Exploring Low-Rank Adaptation for Generating Synthetic Autonomous Driving Data.
                 </h3>
                 
@@ -136,9 +138,9 @@
         </div>
 
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
-            <article class="bg-card p-6 rounded-xl border border-gray-700/50 hover:border-primary/50 transition group">
+            <article class="bg-card p-6 rounded-xl border border-gray-700/50 hover:border-purple/50 transition group">
     
-                <h3 class="text-xl font-bold text-white mb-2 group-hover:text-primary transition">
+                <h3 class="text-xl font-bold text-white mb-2 group-hover:text-purple transition">
                     LoL Esports Win Prediction
                 </h3>
                 
@@ -150,7 +152,7 @@
                 
                 <a href="https://github.com/ArturoAlcorta/LoLEsports-win-prediction" 
                     target="_blank" 
-                    class="text-primary text-sm font-medium hover:underline flex items-center gap-1">
+                    class="text-purple text-sm font-medium hover:underline flex items-center gap-1">
                     Explore Code 
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
@@ -159,9 +161,9 @@
             
             </article>
 
-            <article class="bg-card p-6 rounded-xl border border-gray-700/50 hover:border-primary/50 transition group">
+            <article class="bg-card p-6 rounded-xl border border-gray-700/50 hover:border-purple/50 transition group">
     
-                <h3 class="text-xl font-bold text-white mb-2 group-hover:text-primary transition">
+                <h3 class="text-xl font-bold text-white mb-2 group-hover:text-purple transition">
                     DnD Map Assistant
                 </h3>
                 
@@ -173,7 +175,7 @@
                 
                 <a href="https://github.com/ArturoAlcorta/DnD-Map-Assistant" 
                     target="_blank" 
-                    class="text-primary text-sm font-medium hover:underline flex items-center gap-1">
+                    class="text-purple text-sm font-medium hover:underline flex items-center gap-1">
                     Explore Code 
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
@@ -186,11 +188,11 @@
         <div class="flex justify-center">
             <a href="/projects"
             target="_self"
-            class="bg-primary hover:bg-primary/90 
+            class="bg-purple hover:bg-purple/90 
                     text-white font-semibold text-base
                     px-8 py-3 
                     rounded-xl
-                    shadow-lg shadow-primary/20
+                    shadow-base shadow-purple/20
                     transition-all duration-300
                     hover:scale-105">
                 Explore all projects
@@ -200,13 +202,13 @@
 
     <section id="articles" class="max-w-5xl mx-auto px-6 py-12">
         <h2 class="text-3xl font-bold text-white mb-10 flex items-center gap-2">
-            <span class="w-8 h-1 bg-primary rounded-full"></span> Published Articles
+            <span class="w-8 h-1 bg-cyan rounded-full"></span> Published Articles
         </h2>
 
         <div>
-            <article class="bg-card p-6 rounded-xl border border-gray-700/50 hover:border-primary/50 transition group mb-4">
+            <article class="bg-card p-6 rounded-xl border border-gray-700/50 hover:border-cyan/50 transition group mb-4">
     
-                <h3 class="text-xl font-bold text-white mb-2 group-hover:text-primary transition">
+                <h3 class="text-xl font-bold text-white mb-2 group-hover:text-cyan transition">
                     Rotational spectrum and theoretical calculations of pyrazole⋯CO2 complex: Tetrel and hydrogen bond interactions
                 </h3>
 
@@ -226,7 +228,7 @@
                 
                 <a href="https://doi.org/10.1063/5.0312019" 
                     target="_blank" 
-                    class="text-primary text-sm font-medium hover:underline flex items-center gap-1">
+                    class="text-cyan text-sm font-medium hover:underline flex items-center gap-1">
                     Go to Article
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
@@ -235,9 +237,9 @@
             
             </article>
 
-            <article class="bg-card p-6 rounded-xl border border-gray-700/50 hover:border-primary/50 transition group mb-4">
+            <article class="bg-card p-6 rounded-xl border border-gray-700/50 hover:border-cyan/50 transition group mb-4">
     
-                <h3 class="text-xl font-bold text-white mb-2 group-hover:text-primary transition">
+                <h3 class="text-xl font-bold text-white mb-2 group-hover:text-cyan transition">
                     A Computational Study of the NMR Chemical Shifts of Polynitropyrazoles
                 </h3>
 
@@ -257,7 +259,7 @@
 
                 <a href="https://doi.org/10.1002/mrc.70051" 
                     target="_blank" 
-                    class="text-primary text-sm font-medium hover:underline flex items-center gap-1">
+                    class="text-cyan text-sm font-medium hover:underline flex items-center gap-1">
                     Go to Article
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
@@ -271,11 +273,11 @@
         <div class="flex justify-center">
             <a href="/articles"
             target="_self"
-            class="bg-primary hover:bg-primary/90 
+            class="bg-cyan hover:bg-cyan/90 
                     text-white font-semibold text-base
                     px-8 py-3 
                     rounded-xl
-                    shadow-lg shadow-primary/20
+                    shadow-base shadow-cyan/20
                     transition-all duration-300
                     hover:scale-105">
                 Explore all articles
