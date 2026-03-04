@@ -15,6 +15,8 @@
                         primary: '#3b82f6', // Un azul estándar
                         dark: '#0f172a',    // Fondo muy oscuro (Slate-900)
                         card: '#1e293b',    // Fondo de tarjetas (Slate-800)
+                        cyan: '#06b6d4',    // Para seccion de articulos publicados
+                        purple: '#8b5cf6',  // Para seccion de proyectos
                     }
                 }
             }
@@ -26,25 +28,25 @@
     <nav class="max-w-5xl mx-auto p-6 flex justify-between items-center">
         <div class="text-2xl font-bold text-white tracking-wider">
             <a href="/" class="group">
-            AA<span class="text-primary group-hover:text-white transition">.dev</span>
+            <span class="group-hover:text-primary transition">AA<span class="text-primary">.dev</span>
             </a>
         </div>
         <div class="space-x-6 hidden md:block">
-            <a href="#proyectos" class="hover:text-primary transition">Projects</a>
-            <a href="/articles" class="hover:text-primary transition">Published Articles</a>
+            <a href="#proyectos" class="hover:text-purple transition">Projects</a>
+            <a href="/articles" class="hover:text-cyan transition">Published Articles</a>
         </div>
     </nav>
 
     <section id="proyectos" class="max-w-5xl mx-auto px-6 py-12">
 
         <h2 class="text-3xl font-bold text-white mb-10 flex items-center gap-2">
-            <span class="w-8 h-1 bg-primary rounded-full"></span> Personal Projects
+            <span class="w-8 h-1 bg-purple rounded-full"></span> Personal Projects
         </h2>
         
         <div>
-            <article class="bg-card p-6 rounded-xl border border-gray-700/50 hover:border-primary/50 transition group mb-4">
+            <article class="bg-card p-6 rounded-xl border border-gray-700/50 hover:border-purple/50 transition group mb-4">
     
-                <h3 class="text-xl font-bold text-white mb-2 group-hover:text-primary transition">
+                <h3 class="text-xl font-bold text-white mb-2 group-hover:text-purple transition">
                     LoL Esports Win Prediction
                 </h3>
                 
@@ -60,7 +62,7 @@
                 
                 <a href="https://github.com/ArturoAlcorta/LoLEsports-win-prediction" 
                     target="_blank" 
-                    class="text-primary text-sm font-medium hover:underline flex items-center gap-1">
+                    class="text-purple text-sm font-medium hover:underline flex items-center gap-1">
                     Explore Code
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
@@ -69,9 +71,9 @@
             
             </article>
 
-            <article class="bg-card p-6 rounded-xl border border-gray-700/50 hover:border-primary/50 transition group mb-4">
+            <article class="bg-card p-6 rounded-xl border border-gray-700/50 hover:border-purple/50 transition group mb-4">
     
-                <h3 class="text-xl font-bold text-white mb-2 group-hover:text-primary transition">
+                <h3 class="text-xl font-bold text-white mb-2 group-hover:text-purple transition">
                     Masters Thesis: Exploring Low-Rank Adaptation for Generating Synthetic Autonomous Driving Data.
                 </h3>
                 
@@ -87,7 +89,7 @@
             
             </article>
 
-            <article class="bg-card p-6 rounded-xl border border-gray-700/50 hover:border-primary/50 transition group mb-4">
+            <article class="bg-card p-6 rounded-xl border border-gray-700/50 hover:border-primary/50 transition group">
     
                 <h3 class="text-xl font-bold text-white mb-2 group-hover:text-primary transition">
                     DnD Map Assistant
@@ -105,7 +107,7 @@
                 
                 <a href="https://github.com/ArturoAlcorta/DnD-Map-Assistant" 
                     target="_blank" 
-                    class="text-primary text-sm font-medium hover:underline flex items-center gap-1">
+                    class="text-purple text-sm font-medium hover:underline flex items-center gap-1">
                     Explore Code 
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
@@ -116,7 +118,7 @@
         </div>
     </section>
 
-    <footer class="border-t border-gray-800 mt-20 py-10 text-center text-gray-500 text-sm">
+    <footer class="border-t border-gray-800 py-10 text-center text-gray-500 text-sm">
         <p>&copy; Arturo Alcorta </p>
     </footer>
 
