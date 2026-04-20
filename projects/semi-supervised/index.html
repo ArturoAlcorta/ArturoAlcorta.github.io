@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arturo Alcorta | Semi-Supervised Segmentation</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3b82f6',
+                        dark: '#0f172a',
+                        card: '#1e293b',
+                        cyan: '#06b6d4',
+                        purple: '#8b5cf6',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-dark text-gray-300 font-sans antialiased">
+
+    <nav class="max-w-5xl mx-auto p-6 flex justify-between items-center">
+        <div class="text-2xl font-bold text-white tracking-wider">
+            <a href="/" class="group">
+            <span class="group-hover:text-primary transition">AA<span class="text-primary">.dev</span></span>
+            </a>
+        </div>
+        <div class="space-x-6 hidden md:block">
+            <a href="/projects" class="hover:text-purple transition">Projects</a>
+            <a href="/articles" class="hover:text-cyan transition">Published Articles</a>
+        </div>
+    </nav>
+
+    <main class="max-w-4xl mx-auto px-6 py-10">
+
+        <a href="/projects" class="inline-flex items-center gap-2 text-sm text-gray-500 hover:text-purple transition mb-8">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16l-4-4m0 0l4-4m-4 4h18" />
+            </svg>
+            Back to Projects
+        </a>
+
+        <!-- Header -->
+        <div class="mb-10">
+            <div class="flex flex-wrap gap-2 mb-4">
+                <span class="text-xs px-2 py-1 bg-purple/20 text-purple rounded border border-purple/30">Personal Project</span>
+                <span class="text-xs px-2 py-1 bg-blue-900/30 text-blue-400 rounded border border-blue-700/30">In Progress</span>
+                <span class="text-xs px-2 py-1 bg-gray-700 rounded text-gray-300">Computer Vision</span>
+                <span class="text-xs px-2 py-1 bg-gray-700 rounded text-gray-300">Semi-Supervised Learning</span>
+                <span class="text-xs px-2 py-1 bg-gray-700 rounded text-gray-300">Semantic Segmentation</span>
+            </div>
+            <h1 class="text-3xl md:text-4xl font-bold text-white mb-4 leading-tight">
+                Semi-Supervised Learning for Semantic Segmentation with Synthetic Images
+            </h1>
+
+            <!-- TFM continuation badge -->
+            <div class="inline-flex items-center gap-2 bg-card border border-purple/30 rounded-lg px-4 py-2 text-sm mb-6">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-purple" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
+                <span class="text-gray-400">Personal continuation of the</span>
+                <a href="/projects/tfm" class="text-purple hover:underline font-medium">Masters Thesis</a>
+            </div>
+
+            <p class="text-gray-400 text-lg leading-relaxed">
+                What happens when you have a model that can generate unlimited synthetic urban images, but almost no
+                labeled real-world data? This project explores exactly that — using unlabeled synthetic images as a
+                lever to improve semantic segmentation models through semi-supervised learning techniques.
+            </p>
+        </div>
+
+        <!-- Code notice -->
+        <div class="bg-yellow-900/20 border border-yellow-700/40 rounded-xl p-4 mb-10 flex items-start gap-3">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-500 mt-0.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z" />
+            </svg>
+            <p class="text-yellow-300/80 text-sm">
+                <span class="font-semibold text-yellow-300">Code not publicly available.</span> This work is a personal continuation of the Masters Thesis and is part of an ongoing research project. The source code cannot be shared at this time.
+            </p>
+        </div>
+
+        <!-- Context / data -->
+        <section class="mb-10">
+            <h2 class="text-xl font-bold text-white mb-4 flex items-center gap-2">
+                <span class="w-6 h-1 bg-purple rounded-full"></span>
+                Where do the images come from?
+            </h2>
+            <div class="bg-card rounded-xl border border-gray-700/50 p-6">
+                <p class="text-gray-400 leading-relaxed mb-4">
+                    The synthetic images used in this project are generated by the fine-tuned diffusion models developed
+                    during the <a href="/projects/tfm" class="text-purple hover:underline">Masters Thesis</a>.
+                    Those models were trained to produce realistic urban driving scenes guided by text captions.
+                    Rather than letting those generated images sit idle, this project puts them to work as unlabeled data
+                    in a semi-supervised segmentation pipeline.
+                </p>
+                <div class="grid grid-cols-2 gap-4 mt-4">
+                    <div class="bg-dark rounded-lg p-4 text-center">
+                        <p class="text-2xl font-bold text-white">3,500</p>
+                        <p class="text-xs text-gray-400 mt-1">Real images with labels</p>
+                    </div>
+                    <div class="bg-dark rounded-lg p-4 text-center">
+                        <p class="text-2xl font-bold text-purple">1,000</p>
+                        <p class="text-xs text-gray-400 mt-1">Synthetic images without labels</p>
+                    </div>
+                </div>
+                <p class="text-gray-500 text-xs mt-3">
+                    The labeled real-world set is larger than the synthetic unlabeled pool — making this an exercise in
+                    extracting maximum signal from limited synthetic data, not just scale.
+                </p>
+            </div>
+        </section>
+
+        <!-- Techniques -->
+        <section class="mb-10">
+            <h2 class="text-xl font-bold text-white mb-4 flex items-center gap-2">
+                <span class="w-6 h-1 bg-purple rounded-full"></span>
+                Techniques Explored
+            </h2>
+            <div class="space-y-4">
+
+                <!-- Pseudo-labeling -->
+                <div class="bg-card rounded-xl border border-gray-700/50 p-6">
+                    <div class="flex items-start gap-3">
+                        <span class="text-purple font-mono text-lg mt-0.5">01</span>
+                        <div>
+                            <h3 class="text-white font-semibold mb-2">Pseudo-Labeling with Transformer Models</h3>
+                            <p class="text-gray-400 text-sm leading-relaxed">
+                                The synthetic unlabeled images are annotated automatically using large transformer-based
+                                segmentation models (such as SegFormer or Mask2Former). These architectures currently represent
+                                the state of the art for semantic segmentation, making them the most reliable source of
+                                pseudo-labels. Only high-confidence predictions are retained and used to supervise the
+                                training of the smaller target model, reducing the risk of propagating noisy labels.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mean Teacher -->
+                <div class="bg-card rounded-xl border border-gray-700/50 p-6">
+                    <div class="flex items-start gap-3">
+                        <span class="text-purple font-mono text-lg mt-0.5">02</span>
+                        <div>
+                            <h3 class="text-white font-semibold mb-2">
+                                Mean Teacher
+                                <span class="text-xs text-gray-500 font-normal ml-2">(Tarvainen & Valpola, 2017)</span>
+                            </h3>
+                            <p class="text-gray-400 text-sm leading-relaxed mb-3">
+                                Two model instances share the same architecture: a <span class="text-white">student</span>
+                                that trains normally via backpropagation, and a <span class="text-white">teacher</span>
+                                whose weights are not updated by gradients but instead track an
+                                <span class="text-white">Exponential Moving Average (EMA)</span> of the student's weights
+                                across training epochs:
+                            </p>
+                            <div class="bg-dark rounded-lg px-4 py-3 font-mono text-sm text-gray-300 mb-3">
+                                w<sub>teacher</sub> = 0.99 · w<sub>teacher</sub> + 0.01 · w<sub>student</sub>
+                            </div>
+                            <p class="text-gray-400 text-sm leading-relaxed">
+                                Because the teacher averages many past checkpoints, its predictions are more stable and
+                                less noisy than the student's at any given point. The teacher's outputs on unlabeled
+                                synthetic images serve as soft targets that guide the student, effectively leveraging
+                                temporal ensemble across training. This technique consistently achieves the best results
+                                among all approaches explored.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Knowledge Distillation / Self-Training -->
+                <div class="bg-card rounded-xl border border-gray-700/50 p-6">
+                    <div class="flex items-start gap-3">
+                        <span class="text-purple font-mono text-lg mt-0.5">03</span>
+                        <div>
+                            <h3 class="text-white font-semibold mb-2">Knowledge Distillation via Self-Training</h3>
+                            <p class="text-gray-400 text-sm leading-relaxed">
+                                A large transformer-based segmentation model is first fine-tuned on the labeled real-world
+                                dataset. It is then used as a <span class="text-white">teacher</span> to annotate the
+                                unlabeled synthetic images — but only its high-confidence predictions are kept as
+                                pseudo-labels. These filtered annotations are then used to train a significantly
+                                smaller <span class="text-white">DeepLabV3</span> model.
+                                This approach transfers knowledge from a stronger, heavier architecture into a compact
+                                model suitable for deployment, while using synthetic data as the distillation medium.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Results -->
+        <section class="mb-10">
+            <h2 class="text-xl font-bold text-white mb-4 flex items-center gap-2">
+                <span class="w-6 h-1 bg-purple rounded-full"></span>
+                Results
+            </h2>
+            <div class="bg-card rounded-xl border border-gray-700/50 p-6">
+                <p class="text-gray-400 leading-relaxed mb-4">
+                    All three semi-supervised approaches consistently outperform the supervised baseline trained
+                    exclusively on the labeled dataset, using the same hyperparameter configuration.
+                    Improvements range from <span class="text-white font-semibold">+5 to +10%</span> in segmentation
+                    performance metrics.
+                </p>
+                <div class="bg-dark rounded-lg p-4 flex items-start gap-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-purple mt-0.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <p class="text-gray-300 text-sm">
+                        <span class="text-white font-semibold">Mean Teacher</span> achieves the most consistent gains
+                        across runs, making it the recommended approach for this setting. Its EMA-based teacher provides
+                        more reliable pseudo-supervision than either fixed pseudo-labels or single-checkpoint distillation.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Status -->
+        <section class="mb-10">
+            <div class="bg-blue-900/20 border border-blue-700/40 rounded-xl p-4 flex items-start gap-3">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-400 mt-0.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M12 2a10 10 0 110 20A10 10 0 0112 2z" />
+                </svg>
+                <p class="text-blue-300/80 text-sm">
+                    This is an ongoing personal project. Further experiments and results will be shared here as the work progresses.
+                </p>
+            </div>
+        </section>
+
+        <!-- Tags -->
+        <div class="flex flex-wrap gap-2">
+            <span class="text-xs px-2 py-1 bg-gray-700 rounded text-gray-300">Semi-Supervised Learning</span>
+            <span class="text-xs px-2 py-1 bg-gray-700 rounded text-gray-300">Semantic Segmentation</span>
+            <span class="text-xs px-2 py-1 bg-gray-700 rounded text-gray-300">Mean Teacher</span>
+            <span class="text-xs px-2 py-1 bg-gray-700 rounded text-gray-300">Knowledge Distillation</span>
+            <span class="text-xs px-2 py-1 bg-gray-700 rounded text-gray-300">Pseudo-Labeling</span>
+            <span class="text-xs px-2 py-1 bg-gray-700 rounded text-gray-300">DeepLabV3</span>
+            <span class="text-xs px-2 py-1 bg-gray-700 rounded text-gray-300">Synthetic Data</span>
+            <span class="text-xs px-2 py-1 bg-gray-700 rounded text-gray-300">Autonomous Driving</span>
+            <span class="text-xs px-2 py-1 bg-gray-700 rounded text-gray-300">Python · PyTorch</span>
+        </div>
+
+    </main>
+
+    <footer class="border-t border-gray-800 py-10 text-center text-gray-500 text-sm mt-16">
+        <p>&copy; Arturo Alcorta</p>
+    </footer>
+
+</body>
+</html>
