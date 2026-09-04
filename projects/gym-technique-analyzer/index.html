@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arturo Alcorta | Gym Technique Analyzer</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3b82f6',
+                        dark: '#0f172a',
+                        card: '#1e293b',
+                        cyan: '#06b6d4',
+                        purple: '#8b5cf6',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-dark text-gray-300 font-sans antialiased">
+
+    <nav class="max-w-5xl mx-auto p-6 flex justify-between items-center">
+        <div class="text-2xl font-bold text-white tracking-wider">
+            <a href="/" class="group">
+                <span class="group-hover:text-primary transition">AA<span class="text-primary">.dev</span></span>
+            </a>
+        </div>
+        <div class="space-x-6 hidden md:block">
+            <a href="/projects" class="hover:text-purple transition">Projects</a>
+            <a href="/articles" class="hover:text-cyan transition">Published Articles</a>
+        </div>
+    </nav>
+
+    <main class="max-w-4xl mx-auto px-6 py-10">
+
+        <a href="/projects" class="inline-flex items-center gap-2 text-sm text-gray-500 hover:text-purple transition mb-8">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16l-4-4m0 0l4-4m-4 4h18" />
+            </svg>
+            Back to Projects
+        </a>
+
+        <!-- Header -->
+        <div class="mb-10">
+            <div class="flex flex-wrap gap-2 mb-4">
+                <span class="text-xs px-2 py-1 bg-purple/20 text-purple rounded border border-purple/30">Open Source</span>
+                <span class="text-xs px-2 py-1 bg-gray-700 rounded text-gray-300">Pose Estimation</span>
+                <span class="text-xs px-2 py-1 bg-gray-700 rounded text-gray-300">Biomechanics</span>
+                <span class="text-xs px-2 py-1 bg-gray-700 rounded text-gray-300">DTW</span>
+                <span class="text-xs px-2 py-1 bg-gray-700 rounded text-gray-300">FastAPI</span>
+                <span class="text-xs px-2 py-1 bg-gray-700 rounded text-gray-300">Celery</span>
+                <span class="text-xs px-2 py-1 bg-gray-700 rounded text-gray-300">Docker</span>
+            </div>
+            <h1 class="text-3xl md:text-4xl font-bold text-white mb-2 leading-tight">
+                Gym Technique Analyzer
+            </h1>
+            <p class="text-purple font-mono text-sm mb-6">Per-rep lifting technique from a single phone video</p>
+            <p class="text-gray-400 text-lg leading-relaxed">
+                Upload a set of squats, RDLs or bench press and get every repetition broken down into the numbers that describe it —
+                depth, range of motion, tempo, spinal flexion, knee cave, left/right symmetry — and, optionally, a
+                <span class="text-white">Dynamic Time Warping</span> comparison of each rep against reference lifters.
+                The analysis engine started life inside <a href="/projects/trainer-app" class="text-purple hover:underline">trAIner</a>;
+                this is the standalone version of it.
+            </p>
+        </div>
+
+        <!-- Scope note -->
+        <div class="bg-amber-900/20 border border-amber-700/40 rounded-xl p-4 mb-10 flex items-start gap-3">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-amber-500 mt-0.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z" />
+            </svg>
+            <p class="text-amber-300/80 text-sm leading-relaxed">
+                <span class="font-semibold text-amber-300">Read the comparison mode carefully.</span>
+                The default mode needs no reference lifter at all and stands on its own. The optional DTW mode measures
+                <em>similarity to a specific, small pool</em> of 26 reference repetitions from two lifters — a low score there may be
+                body proportions or tempo rather than a fault.
+            </p>
+        </div>
+
+        <!-- The Problem -->
+        <section class="mb-10">
+            <h2 class="text-xl font-bold text-white mb-4 flex items-center gap-2">
+                <span class="w-6 h-1 bg-purple rounded-full"></span>
+                The Problem
+            </h2>
+            <div class="bg-card rounded-xl border border-gray-700/50 p-6">
+                <p class="text-gray-400 leading-relaxed">
+                    Filming your sets is free and everybody already does it; getting anything out of the footage is the hard part.
+                    Watching your own squat back tells you very little beyond "looked fine" — you cannot eyeball
+                    <span class="text-white">how much your spine rounded</span>, whether rep 6 was 200&nbsp;ms slower out of the hole than rep 1,
+                    or whether your left elbow consistently lags your right by 20°.
+                </p>
+                <p class="text-gray-400 leading-relaxed mt-4">
+                    A pose model can measure all of that frame by frame, so the video you were filming anyway becomes a set of numbers
+                    you can track across sessions. Which metrics are worth measuring at all — and which executions are good enough to
+                    serve as references — were decided in consultation with a
+                    <span class="text-white">professional strength coach</span>, rather than picked for being easy to compute.
+                </p>
+            </div>
+        </section>
+
+        <!-- Two modes -->
+        <section class="mb-10">
+            <h2 class="text-xl font-bold text-white mb-4 flex items-center gap-2">
+                <span class="w-6 h-1 bg-purple rounded-full"></span>
+                Two Modes, One Score
+            </h2>
+            <div class="bg-card rounded-xl border border-gray-700/50 p-6 mb-4">
+                <pre class="text-xs md:text-sm font-mono text-gray-400 overflow-x-auto">score = 0.5 · movement pattern (DTW)  +  0.5 · relational metrics</pre>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                <div class="bg-card rounded-xl border border-purple/30 p-6">
+                    <h3 class="text-white font-semibold mb-2 text-sm">Technique only (default)</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        The relational half alone: knee valgus, spine flexion range, hip/knee ROM ratio and hip-knee coordination for the
+                        sagittal lifts; left/right symmetry for bench. Two of them are judged against an absolute cutoff needing no reference
+                        at all, the rest against the pooled range of the reference reps. No DTW is involved — which is the whole point of the
+                        split: an analysis run without the comparison still comes back with a score.
+                    </p>
+                </div>
+                <div class="bg-card rounded-xl border border-gray-700/50 p-6">
+                    <h3 class="text-white font-semibold mb-2 text-sm">Technique + DTW comparison</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        Adds the movement-pattern half: each rep is dynamic-time-warped against every reference rep on file, returning the
+                        closest match and a per-joint breakdown of where the divergence is. DTW absorbs tempo differences, so a slow rep and a
+                        fast rep with the same shape score alike — and matching against <em>individual</em> reps rather than an averaged curve
+                        conditions on body type, since the mean of differently-proportioned lifters is a trajectory none of them performs.
+                    </p>
+                </div>
+            </div>
+            <p class="text-gray-500 text-sm leading-relaxed mt-4">
+                The split exists because the halves answer genuinely different questions. "Is my back rounding more than it should?" is a
+                measurement against a range. "Does my hinge look like theirs?" is a shape comparison, and inherits every limitation of the
+                reference pool. When only one half is available the score <em>is</em> that half, rather than a combined number that quietly
+                means something different rep to rep.
+            </p>
+        </section>
+
+        <!-- Pipeline -->
+        <section class="mb-10">
+            <h2 class="text-xl font-bold text-white mb-4 flex items-center gap-2">
+                <span class="w-6 h-1 bg-purple rounded-full"></span>
+                The Pipeline
+            </h2>
+            <div class="space-y-4">
+                <div class="bg-card rounded-xl border border-gray-700/50 p-6">
+                    <h3 class="text-white font-semibold mb-2 flex items-center gap-2"><span class="text-purple text-xs">01</span> Preprocess</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        Resample to 15&nbsp;FPS and cap the long side at 1920&nbsp;px. Consecutive frames of a barbell lift are highly redundant;
+                        15&nbsp;FPS still resolves a 0.6&nbsp;s concentric into ~9 samples.
+                    </p>
+                </div>
+                <div class="bg-card rounded-xl border border-gray-700/50 p-6">
+                    <h3 class="text-white font-semibold mb-2 flex items-center gap-2"><span class="text-purple text-xs">02</span> Pose</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        <span class="text-purple">YOLO11m</span> detects people, an IoU tracker keeps the principal one across frames, and
+                        <span class="text-purple">SynthPose (ViTPose-Huge, 52 keypoints)</span> estimates the skeleton. SynthPose over stock
+                        COCO-17 specifically for the spine: it predicts anatomical markers — C7, T6, T11, L2, ASIS — that COCO simply does not have,
+                        and every spine metric below is built on them.
+                    </p>
+                </div>
+                <div class="bg-card rounded-xl border border-gray-700/50 p-6">
+                    <h3 class="text-white font-semibold mb-2 flex items-center gap-2"><span class="text-purple text-xs">03</span> Normalize</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        Per-exercise origin and scale: hip-centred with femur/torso-length scaling for the sagittal lifts, shoulder-centred with
+                        shoulder-width scaling for bench. Both use a <span class="text-white">median over the clip</span> rather than per-frame values,
+                        so a single bad frame cannot rescale the skeleton. This is what makes metrics comparable between people of different sizes
+                        and between clips shot at different distances.
+                    </p>
+                </div>
+                <div class="bg-card rounded-xl border border-gray-700/50 p-6">
+                    <h3 class="text-white font-semibold mb-2 flex items-center gap-2"><span class="text-purple text-xs">04</span> Count reps</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        A 4-state hysteresis machine per exercise on the primary joint angle, cross-confirmed by a second signal — knee + hip for the
+                        squat, hip + torso inclination for the RDL, both elbows for bench. Hysteresis rather than peak-picking, because a lifter pausing
+                        mid-rep must not read as two reps. Reps are counted <span class="text-white">once</span>, and the metrics, the DTW segmentation
+                        and the UI numbering all reuse those windows, so rep 3 means the same thing everywhere.
+                    </p>
+                </div>
+                <div class="bg-card rounded-xl border border-gray-700/50 p-6">
+                    <h3 class="text-white font-semibold mb-2 flex items-center gap-2"><span class="text-purple text-xs">05</span> Measure</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        Per-rep metrics from the normalized keypoints. All of them are <span class="text-white">relations between joints</span> —
+                        ratios, ranges, phase — rather than absolute positions, so they survive differences in body proportions and ROM. That is exactly
+                        what makes a band pooled across differently-proportioned lifters meaningful at all.
+                    </p>
+                </div>
+                <div class="bg-card rounded-xl border border-gray-700/50 p-6">
+                    <h3 class="text-white font-semibold mb-2 flex items-center gap-2"><span class="text-purple text-xs">06</span> Compare (optional)</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        DTW per joint angle against each reference rep. Distance is the normalized warped distance in degrees; each angle scores
+                        <code class="text-gray-200">100·(1 − distance/15°)</code>, floored at 0 and averaged, and the rep keeps its best match.
+                        The 15° denominator is the "totally different movement" anchor. Joint angles rather than raw coordinates, because angles are
+                        invariant to mirroring, camera distance and limb length — coordinates would score a tall lifter as "different" for being tall.
+                    </p>
+                </div>
+                <div class="bg-card rounded-xl border border-gray-700/50 p-6">
+                    <h3 class="text-white font-semibold mb-2 flex items-center gap-2"><span class="text-purple text-xs">07</span> Score</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        Each metric becomes a 0–100 sub-score, those average into the relational half, and the DTW best match is the pattern half.
+                        Scoring runs when the <em>report</em> is requested rather than at analysis time — so rebuilding a band or changing a weight
+                        re-scores every past analysis without touching a video.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- What you get -->
+        <section class="mb-10">
+            <h2 class="text-xl font-bold text-white mb-4 flex items-center gap-2">
+                <span class="w-6 h-1 bg-purple rounded-full"></span>
+                What You Get Per Rep
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                <div class="bg-card rounded-xl border border-gray-700/50 p-6">
+                    <p class="text-gray-500 text-xs uppercase tracking-wider mb-3">Squat &amp; RDL</p>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li class="flex gap-2"><span class="text-purple shrink-0">◈</span> Knee cave (verdict)</li>
+                        <li class="flex gap-2"><span class="text-purple shrink-0">◈</span> Spine flexion range</li>
+                        <li class="flex gap-2"><span class="text-purple shrink-0">◈</span> Hip/knee ROM ratio</li>
+                        <li class="flex gap-2"><span class="text-purple shrink-0">◈</span> Hip-knee out of phase %</li>
+                        <li class="flex gap-2"><span class="text-purple shrink-0">◈</span> Hip-knee MARP</li>
+                    </ul>
+                </div>
+                <div class="bg-card rounded-xl border border-gray-700/50 p-6">
+                    <p class="text-gray-500 text-xs uppercase tracking-wider mb-3">Bench press</p>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li class="flex gap-2"><span class="text-purple shrink-0">◈</span> Elbow L/R asymmetry</li>
+                        <li class="flex gap-2"><span class="text-purple shrink-0">◈</span> Shoulder L/R asymmetry</li>
+                    </ul>
+                    <p class="text-gray-500 text-xs leading-relaxed mt-4">
+                        Plus, on every exercise: the set's headline score and how it was composed, per-rep tempo chips
+                        (total / eccentric / concentric), any cues raised, and — in comparison mode — the closest reference
+                        with its per-joint bars.
+                    </p>
+                </div>
+            </div>
+            <div class="bg-card rounded-xl border border-gray-700/50 p-6 space-y-3">
+                <p class="text-gray-400 text-sm leading-relaxed">
+                    <span class="text-white font-semibold">Spine flexion range</span> — the mid-hip → L2 → C7 angle is ~180° with a neutral spine
+                    and closes as the back rounds. Reported as the <em>range within the rep</em>, so it measures how much you rounded rather than
+                    each person's individual neutral posture.
+                </p>
+                <p class="text-gray-400 text-sm leading-relaxed">
+                    <span class="text-white font-semibold">Hip/knee ROM ratio</span> — hip range divided by knee range. A high ratio is a
+                    hip-dominant hinge; a low one on an RDL means you are squatting it.
+                </p>
+                <p class="text-gray-400 text-sm leading-relaxed">
+                    <span class="text-white font-semibold">Hip-knee MARP</span> — mean absolute relative phase via a Hilbert transform, plus
+                    out-of-phase %: whether hip and knee move together or one leads. 0° is perfect synchrony.
+                </p>
+                <p class="text-gray-400 text-sm leading-relaxed">
+                    <span class="text-white font-semibold">Knee cave</span> — ankle width over knee width across the deepest quarter of the rep.
+                    Differential, because that cancels the common-mode perspective offset of an angled camera; at the bottom, because valgus appears
+                    under load at depth.
+                </p>
+            </div>
+        </section>
+
+        <!-- Design choices -->
+        <section class="mb-10">
+            <h2 class="text-xl font-bold text-white mb-4 flex items-center gap-2">
+                <span class="w-6 h-1 bg-purple rounded-full"></span>
+                Design Decisions
+            </h2>
+            <div class="grid md:grid-cols-2 gap-4">
+                <div class="bg-card rounded-xl border border-purple/30 p-5">
+                    <div class="text-purple text-2xl mb-2">⌖</div>
+                    <h3 class="text-white font-semibold mb-1 text-sm">3D lifting was tried and abandoned</h3>
+                    <p class="text-gray-400 text-xs leading-relaxed">
+                        The complete answer is to lift the 2D keypoints into a 3D skeleton. The lift models did not preserve limb length through the
+                        movement — the quadriceps stretched and shrank by as much as <span class="text-white">70%</span> between phases of the same rep.
+                        Metrics built on segment lengths and joint angles cannot survive that.
+                    </p>
+                </div>
+                <div class="bg-card rounded-xl border border-purple/30 p-5">
+                    <div class="text-purple text-2xl mb-2">∠</div>
+                    <h3 class="text-white font-semibold mb-1 text-sm">One camera at a deliberately intermediate angle</h3>
+                    <p class="text-gray-400 text-xs leading-relaxed">
+                        Several cameras, one per plane, is a real imposition on someone filming themselves between sets. So: a single camera at
+                        <span class="text-white">30° off sagittal</span> for squat and RDL, <span class="text-white">45°</span> between the frontal
+                        and transverse planes for bench. The angle is what makes both knees visible — and therefore knee cave measurable at all.
+                    </p>
+                </div>
+                <div class="bg-card rounded-xl border border-purple/30 p-5">
+                    <div class="text-purple text-2xl mb-2">!</div>
+                    <h3 class="text-white font-semibold mb-1 text-sm">The metric checks its own geometry</h3>
+                    <p class="text-gray-400 text-xs leading-relaxed">
+                        Footage shot to protocol measures ~0.58 on the ankle-separation test; dead side-on sits at 0.005–0.07. Before a 0.15 cutoff
+                        existed, one such clip reported a <em>capped, severe</em> knee cave built entirely out of about a pixel of jitter — dividing
+                        two near-zero widths amplifies noise without bound. Knee cave now returns n/a rather than a number it cannot justify.
+                    </p>
+                </div>
+                <div class="bg-card rounded-xl border border-purple/30 p-5">
+                    <div class="text-purple text-2xl mb-2">⇄</div>
+                    <h3 class="text-white font-semibold mb-1 text-sm">The visible leg is picked by shank length, not confidence</h3>
+                    <p class="text-gray-400 text-xs leading-relaxed">
+                        Keypoint confidence is not a proxy for visibility: on one squat the model scored the <em>occluded</em> leg 10.6% higher.
+                        Median projected shank length separates near from far leg by 12–20%, and holds its orientation through all three lifts.
+                        Cross-matched sides, a rep scored 68 against itself; on the same leg, 100.
+                    </p>
+                </div>
+                <div class="bg-card rounded-xl border border-purple/30 p-5">
+                    <div class="text-purple text-2xl mb-2">⛓</div>
+                    <h3 class="text-white font-semibold mb-1 text-sm">Landmark choice is a fallback chain, not a contest</h3>
+                    <p class="text-gray-400 text-xs leading-relaxed">
+                        <code class="text-gray-200">L_Hip</code> (COCO) is the hip joint centre; <code class="text-gray-200">l_ASIS</code> is the iliac
+                        spine, centimetres forward and above it — different points, not competing estimates of one. Preferring whichever scored higher
+                        per frame put <span class="text-white">47° steps</span> into the hip-angle series. COCO first, marker only when occluded.
+                    </p>
+                </div>
+                <div class="bg-card rounded-xl border border-purple/30 p-5">
+                    <div class="text-purple text-2xl mb-2">≠</div>
+                    <h3 class="text-white font-semibold mb-1 text-sm">Knee cave is judged per exercise</h3>
+                    <p class="text-gray-400 text-xs leading-relaxed">
+                        A squat drives the knees out, so parity with the feet is already a fault (flagged above 0.90); an RDL is a narrow stance with
+                        soft knees over the feet, landing at 1.0–1.15 as plain geometry (flagged above 1.20). One shared cutoff told all five reference
+                        RDL reps their knees were caving in.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Architecture -->
+        <section class="mb-10">
+            <h2 class="text-xl font-bold text-white mb-4 flex items-center gap-2">
+                <span class="w-6 h-1 bg-purple rounded-full"></span>
+                Architecture
+            </h2>
+            <div class="bg-card rounded-xl border border-gray-700/50 p-6">
+                <p class="text-gray-400 text-sm leading-relaxed mb-4">
+                    FastAPI + HTMX frontend, a Celery worker for the CV pipeline, Postgres for the analysis index and per-analysis artifacts on disk.
+                    Pipeline stages are pushed to the browser over Server-Sent Events from a Redis pub/sub channel per analysis. The engine itself has
+                    <span class="text-white">no FastAPI, SQLAlchemy or Celery imports anywhere in it</span> — every service takes data or paths in and
+                    hands data or paths back, which is what makes it runnable from a notebook as easily as from the worker.
+                </p>
+                <pre class="text-[11px] md:text-xs font-mono text-gray-500 leading-relaxed overflow-x-auto">video upload → FastAPI (POST /analyses) → Celery task
+                                    │
+    preprocess → pose → normalize → count reps → measure → [compare]
+                                    │
+                                    ├──→ Redis pub/sub (stage) → SSE → browser
+                                    │
+                                    └──→ Postgres (status) + JSON artifacts / pose.mp4 on disk</pre>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm mt-6 pt-6 border-t border-gray-700/50">
+                    <div>
+                        <p class="text-gray-500 text-xs uppercase tracking-wider mb-1">Backend</p>
+                        <p class="text-white font-medium">FastAPI</p>
+                        <p class="text-gray-400 text-xs">Celery, SQLAlchemy</p>
+                    </div>
+                    <div>
+                        <p class="text-gray-500 text-xs uppercase tracking-wider mb-1">AI / CV</p>
+                        <p class="text-white font-medium">SynthPose + YOLO11m</p>
+                        <p class="text-gray-400 text-xs">ViTPose-H, dtw-python</p>
+                    </div>
+                    <div>
+                        <p class="text-gray-500 text-xs uppercase tracking-wider mb-1">Data</p>
+                        <p class="text-white font-medium">PostgreSQL</p>
+                        <p class="text-gray-400 text-xs">Redis pub/sub + broker</p>
+                    </div>
+                    <div>
+                        <p class="text-gray-500 text-xs uppercase tracking-wider mb-1">Infra</p>
+                        <p class="text-white font-medium">Docker Compose</p>
+                        <p class="text-gray-400 text-xs">CPU or CUDA worker</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Limitations -->
+        <section class="mb-10">
+            <h2 class="text-xl font-bold text-white mb-4 flex items-center gap-2">
+                <span class="w-6 h-1 bg-purple rounded-full"></span>
+                The Reference Set, Honestly
+            </h2>
+            <div class="bg-card rounded-xl border border-gray-700/50 p-6">
+                <p class="text-gray-400 leading-relaxed">
+                    The comparison mode is only as good as what it compares against, and right now that is
+                    <span class="text-white">26 reps from two lifters</span> — with RDL resting on a single athlete's five reps. Since
+                    best-of-references matching works by finding the reference rep most like you, a pool that small mostly cannot contain
+                    anyone built like you. More lifters beats more reps per lifter, and a script is included to turn any video of a good set
+                    into new reference files through the exact same pipeline a submission goes through.
+                </p>
+                <p class="text-gray-400 leading-relaxed mt-4">
+                    The reference band — the pooled acceptable range of each relational metric — is <em>generated</em>, never authored. It means
+                    nothing apart from the particular implementation of the metrics that produced it, so changing how a metric is computed requires
+                    regenerating it, or every rep gets scored against a range that no longer describes the same quantity.
+                </p>
+            </div>
+        </section>
+
+        <!-- Repo link -->
+        <div class="bg-purple/10 border border-purple/30 rounded-xl p-5 flex flex-col sm:flex-row sm:items-center gap-4 justify-between mb-10">
+            <div>
+                <p class="text-purple font-semibold text-sm mb-1">Open source — MIT</p>
+                <p class="text-gray-400 text-sm">Full CV engine, HTTP API and reference tooling on GitHub.</p>
+            </div>
+            <a href="https://github.com/ArturoAlcorta/Gym-technique-analysis" target="_blank"
+               class="shrink-0 inline-flex items-center gap-2 text-white text-xs font-bold px-4 py-2 bg-purple hover:bg-purple/90 rounded-lg transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                    <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.21 11.38.6.11.82-.26.82-.58v-2.17c-3.34.73-4.04-1.61-4.04-1.61-.55-1.4-1.34-1.77-1.34-1.77-1.09-.75.08-.73.08-.73 1.2.08 1.83 1.23 1.83 1.23 1.07 1.83 2.8 1.3 3.49.99.11-.78.42-1.3.76-1.6-2.66-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.12-3.17 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 013-.4c1.02 0 2.05.14 3 .4 2.28-1.55 3.29-1.23 3.29-1.23.66 1.65.25 2.87.12 3.17.77.84 1.23 1.91 1.23 3.22 0 4.61-2.81 5.62-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.21.69.82.58C20.57 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/>
+                </svg>
+                View on GitHub →
+            </a>
+        </div>
+
+        <!-- Tags -->
+        <div class="flex flex-wrap gap-2">
+            <span class="text-xs px-2 py-1 bg-gray-700 rounded text-gray-300">SynthPose · ViTPose-H</span>
+            <span class="text-xs px-2 py-1 bg-gray-700 rounded text-gray-300">YOLO11m</span>
+            <span class="text-xs px-2 py-1 bg-gray-700 rounded text-gray-300">Dynamic Time Warping</span>
+            <span class="text-xs px-2 py-1 bg-gray-700 rounded text-gray-300">Biomechanics</span>
+            <span class="text-xs px-2 py-1 bg-gray-700 rounded text-gray-300">FastAPI + HTMX</span>
+            <span class="text-xs px-2 py-1 bg-gray-700 rounded text-gray-300">Celery</span>
+            <span class="text-xs px-2 py-1 bg-gray-700 rounded text-gray-300">Server-Sent Events</span>
+            <span class="text-xs px-2 py-1 bg-gray-700 rounded text-gray-300">PostgreSQL · Redis</span>
+            <span class="text-xs px-2 py-1 bg-gray-700 rounded text-gray-300">Docker</span>
+        </div>
+
+    </main>
+
+    <footer class="border-t border-gray-800 py-10 text-center text-gray-500 text-sm mt-16">
+        <p>&copy; Arturo Alcorta</p>
+    </footer>
+
+</body>
+</html>
