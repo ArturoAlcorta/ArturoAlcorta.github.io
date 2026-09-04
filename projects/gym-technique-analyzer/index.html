@@ -3,39 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Arturo Alcorta | Gym Technique Analyzer</title>
+    <meta name="description" content="Per-rep lifting technique from a single phone video: 52-keypoint pose estimation, biomechanical metrics chosen with a strength coach, and an optional DTW comparison against reference lifters.">
+    <meta name="author" content="Arturo Alcorta">
+    <link rel="canonical" href="https://arturoalcorta.github.io/projects/gym-technique-analyzer/">
+
+    <!-- Link previews. These stay in the page rather than in site.js on purpose:
+         preview crawlers (LinkedIn, Slack, WhatsApp) do not run JavaScript. -->
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Arturo Alcorta">
+    <meta property="og:title" content="Arturo Alcorta | Gym Technique Analyzer">
+    <meta property="og:description" content="Per-rep lifting technique from a single phone video: 52-keypoint pose estimation, biomechanical metrics chosen with a strength coach, and an optional DTW comparison against reference lifters.">
+    <meta property="og:url" content="https://arturoalcorta.github.io/projects/gym-technique-analyzer/">
+    <meta property="og:image" content="https://arturoalcorta.github.io/images/photo.jpg">
+    <meta property="og:image:width" content="1873">
+    <meta property="og:image:height" content="1873">
+    <meta name="twitter:card" content="summary">
+
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230f172a'/%3E%3Ctext x='16' y='22' font-family='system-ui,-apple-system,sans-serif' font-size='14' font-weight='700' fill='%23ffffff' text-anchor='middle'%3EAA%3C/text%3E%3C/svg%3E">
 
     <script src="https://cdn.tailwindcss.com"></script>
-
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#3b82f6',
-                        dark: '#0f172a',
-                        card: '#1e293b',
-                        cyan: '#06b6d4',
-                        purple: '#8b5cf6',
-                    }
-                }
-            }
-        }
-    </script>
+    <script src="/assets/site.js"></script>
 </head>
 <body class="bg-dark text-gray-300 font-sans antialiased">
 
-    <nav class="max-w-5xl mx-auto p-6 flex justify-between items-center">
-        <div class="text-2xl font-bold text-white tracking-wider">
-            <a href="/" class="group">
-                <span class="group-hover:text-primary transition">AA<span class="text-primary">.dev</span></span>
-            </a>
-        </div>
-        <div class="space-x-6 hidden md:block">
-            <a href="/projects" class="hover:text-purple transition">Projects</a>
-            <a href="/articles" class="hover:text-cyan transition">Published Articles</a>
-        </div>
-    </nav>
+    <div data-site-nav></div>
 
     <main class="max-w-4xl mx-auto px-6 py-10">
 
@@ -424,9 +417,7 @@
 
     </main>
 
-    <footer class="border-t border-gray-800 py-10 text-center text-gray-500 text-sm mt-16">
-        <p>&copy; Arturo Alcorta</p>
-    </footer>
+    <div data-site-footer class="mt-16"></div>
 
 </body>
 </html>

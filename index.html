@@ -3,39 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Arturo Alcorta | AI Engineer</title>
-    
+    <meta name="description" content="AI Engineer building multimodal and computer-vision applications — from LoRA fine-tuning of diffusion models for autonomous driving to trAIner, an AI training app now live on the App Store and Google Play.">
+    <meta name="author" content="Arturo Alcorta">
+    <link rel="canonical" href="https://arturoalcorta.github.io/">
+
+    <!-- Link previews. These stay in the page rather than in site.js on purpose:
+         preview crawlers (LinkedIn, Slack, WhatsApp) do not run JavaScript. -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Arturo Alcorta">
+    <meta property="og:title" content="Arturo Alcorta | AI Engineer">
+    <meta property="og:description" content="AI Engineer building multimodal and computer-vision applications — from LoRA fine-tuning of diffusion models for autonomous driving to trAIner, an AI training app now live on the App Store and Google Play.">
+    <meta property="og:url" content="https://arturoalcorta.github.io/">
+    <meta property="og:image" content="https://arturoalcorta.github.io/images/photo.jpg">
+    <meta property="og:image:width" content="1873">
+    <meta property="og:image:height" content="1873">
+    <meta name="twitter:card" content="summary">
+
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230f172a'/%3E%3Ctext x='16' y='22' font-family='system-ui,-apple-system,sans-serif' font-size='14' font-weight='700' fill='%23ffffff' text-anchor='middle'%3EAA%3C/text%3E%3C/svg%3E">
+
     <script src="https://cdn.tailwindcss.com"></script>
-    
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#3b82f6', // Un azul estándar
-                        dark: '#0f172a',    // Fondo muy oscuro (Slate-900)
-                        card: '#1e293b',    // Fondo de tarjetas (Slate-800)
-                        cyan: '#06b6d4',    // Para seccion de articulos publicados
-                        purple: '#8b5cf6',  // Para seccion de proyectos personales
-                    }
-                }
-            }
-        }
-    </script>
+    <script src="/assets/site.js"></script>
 </head>
 <body class="bg-dark text-gray-300 font-sans antialiased">
 
-    <nav class="max-w-5xl mx-auto p-6 flex justify-between items-center">
-        <div class="text-2xl font-bold text-white tracking-wider">
-            <a href="/" class="group">
-                <span class="group-hover:text-primary transition">AA<span class="text-primary">.dev</span></span>
-            </a>
-        </div>
-        <div class="space-x-6 hidden md:block">
-            <a href="#proyectos" class="hover:text-purple transition">Projects</a>
-            <a href="#articles" class="hover:text-cyan transition">Published Articles</a>
-        </div>
-    </nav>
+    <div data-site-nav></div>
 
     <header class="max-w-md md:max-w-2xl lg:max-w-6xl xl:max-w-7xl mx-auto px-6 py-10 xl:py-20 grid grid-cols-1 md:grid-cols-[1fr_1.4fr] gap-8 items-center">
         <div class="max-w-xl">
@@ -202,9 +195,76 @@
     </header>
 
     <section id="proyectos" class="max-w-5xl mx-auto px-6 space-y-4"> <!-- Al poner space-y-4 aqui decimos que esta es la separacion de todos los div dentro de esta seccion, sin tener que definir en cada div -->
-        <h2 class="text-3xl font-bold text-white mb-10 flex items-center gap-2">
+        <h2 class="text-3xl font-bold text-white mb-4 flex items-center gap-2">
             <span class="w-8 h-1 bg-purple rounded-full"></span> Personal Projects
         </h2>
+
+        <p class="text-gray-400 leading-relaxed max-w-3xl mb-10">
+            Two threads run through most of what I build. One is <span class="text-white">AI applied to training</span> —
+            pose estimation, biomechanics and video pipelines that turn a phone clip into numbers a lifter can act on;
+            it started with trAIner and has since split off two standalone engines of its own. The other is
+            <span class="text-white">generative and semi-supervised computer vision</span>, which grew out of my Masters
+            thesis: using diffusion models to manufacture the training data perception models are always short of.
+            What they have in common is the part I enjoy most — getting a model out of a notebook and behind an API
+            somebody can actually use.
+        </p>
+
+        <article class="relative bg-card p-6 md:p-8 rounded-xl border border-emerald-500/40 hover:border-emerald-500/70 transition group overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-br from-emerald-500/10 via-transparent to-transparent pointer-events-none"></div>
+
+            <div class="relative">
+                <div class="flex flex-wrap items-center gap-2 mb-3">
+                    <span class="text-[10px] px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 font-mono uppercase tracking-wider">Flagship · Live</span>
+                    <span class="text-xs text-gray-500">Available on iOS &amp; Android</span>
+                </div>
+
+                <h3 class="text-2xl md:text-3xl font-bold text-white mb-3 group-hover:text-emerald-400 transition">
+                    trAIner
+                </h3>
+
+                <p class="text-gray-400 leading-relaxed mb-5 max-w-2xl">
+                    The project I've put the most into, and still do. A full-stack AI training app: routines and session
+                    tracking, estimated 1RM and progression history, a social feed — and an AI movement-analysis pipeline
+                    that scores your technique from video using 52-keypoint pose estimation and Dynamic Time Warping.
+                    Out of private beta and publicly released.
+                </p>
+
+                <div class="flex flex-wrap gap-2 mb-6">
+                    <span class="text-xs px-2 py-1 bg-gray-700 rounded text-gray-300">FastAPI</span>
+                    <span class="text-xs px-2 py-1 bg-gray-700 rounded text-gray-300">PostgreSQL</span>
+                    <span class="text-xs px-2 py-1 bg-gray-700 rounded text-gray-300">Pose Estimation</span>
+                    <span class="text-xs px-2 py-1 bg-gray-700 rounded text-gray-300">HTMX</span>
+                    <span class="text-xs px-2 py-1 bg-gray-700 rounded text-gray-300">Celery</span>
+                    <span class="text-xs px-2 py-1 bg-gray-700 rounded text-gray-300">Docker</span>
+                </div>
+
+                <div class="flex flex-wrap items-center gap-3">
+                    <a href="https://apps.apple.com/us/app/trainer-fitness-ai/id6779397720"
+                       target="_blank" rel="noopener"
+                       class="inline-flex items-center gap-2 text-sm font-semibold px-4 py-2 rounded-lg bg-white text-gray-900 hover:bg-gray-200 transition">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                            <path d="M16.365 1.43c0 1.14-.42 2.2-1.13 3.02-.85.98-2.24 1.74-3.37 1.65-.13-1.1.44-2.26 1.12-3 .78-.85 2.16-1.55 3.38-1.67zM20.9 17.2c-.55 1.27-.82 1.84-1.53 2.97-.99 1.57-2.39 3.53-4.12 3.55-1.54.01-1.93-1-4.02-.99-2.09.01-2.52 1.01-4.06.99-1.73-.02-3.06-1.79-4.05-3.36C.36 16.97-.13 12.4 1.57 9.99c1.2-1.72 3.1-2.73 4.88-2.73 1.82 0 2.96 1 4.47 1 1.46 0 2.35-1 4.45-1 1.59 0 3.27.86 4.47 2.35-3.93 2.15-3.29 7.76 1.06 9.59z"/>
+                        </svg>
+                        App Store
+                    </a>
+                    <a href="https://play.google.com/store/apps/details?id=net.trainer_app.twa"
+                       target="_blank" rel="noopener"
+                       class="inline-flex items-center gap-2 text-sm font-semibold px-4 py-2 rounded-lg bg-emerald-600 text-white hover:bg-emerald-500 transition">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                            <path d="M3.6 1.84a1.5 1.5 0 00-.6 1.2v17.92a1.5 1.5 0 00.6 1.2l.1.06 10.02-10.02v-.4L3.7 1.78l-.1.06zM17.4 15.5l-3.34-3.34v-.32L17.4 8.5l.08.05 3.96 2.25c1.13.64 1.13 1.7 0 2.34l-3.96 2.25-.08.11zM16.6 16.3L13.18 12.9 3.1 22.98c.37.4.99.45 1.68.06l11.82-6.74zM16.6 7.7L4.78.96C4.09.57 3.47.62 3.1 1.02L13.18 11.1 16.6 7.7z"/>
+                        </svg>
+                        Google Play
+                    </a>
+                    <a href="/projects/trainer-app"
+                       class="text-emerald-400 text-sm font-medium hover:underline flex items-center gap-1 sm:ml-2">
+                        How it works
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </article>
 
         <div>
             <article class="bg-card p-6 rounded-xl border border-gray-700/50 hover:border-purple/50 transition group mb-4">
@@ -279,7 +339,7 @@
             </article>
         </div>
 
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+        <div>
             <article class="bg-card p-6 rounded-xl border border-gray-700/50 hover:border-purple/50 transition group">
 
                 <h3 class="text-xl font-bold text-white mb-2 group-hover:text-purple transition">
@@ -302,28 +362,6 @@
 
             </article>
 
-            <article class="bg-card p-6 rounded-xl border border-gray-700/50 hover:border-purple/50 transition group">
-
-                <h3 class="text-xl font-bold text-white mb-2 group-hover:text-purple transition">
-                    TrAIner App
-                </h3>
-
-                <div class="flex flex-wrap gap-2 mb-4">
-                    <span class="text-xs px-2 py-1 bg-gray-700 rounded text-gray-300">FastAPI</span>
-                    <span class="text-xs px-2 py-1 bg-gray-700 rounded text-gray-300">Pose Estimation</span>
-                    <span class="text-xs px-2 py-1 bg-gray-700 rounded text-gray-300">Celery</span>
-                    <span class="text-xs px-2 py-1 bg-gray-700 rounded text-gray-300">Docker</span>
-                </div>
-
-                <a href="/projects/trainer-app"
-                    class="text-purple text-sm font-medium hover:underline flex items-center gap-1">
-                    Read More
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                    </svg>
-                </a>
-
-            </article>
         </div>
 
         <div class="flex justify-center">
@@ -427,9 +465,7 @@
 
     </section>
 
-    <footer class="border-t border-gray-800 py-10 text-center text-gray-500 text-sm">
-        <p>&copy; Arturo Alcorta </p>
-    </footer>
+    <div data-site-footer></div>
 
 </body>
 </html>

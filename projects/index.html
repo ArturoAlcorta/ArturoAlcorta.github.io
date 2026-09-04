@@ -3,98 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arturo Alcorta | AI Engineer</title>
-    
+
+    <title>Arturo Alcorta | Personal Projects</title>
+    <meta name="description" content="Personal projects in applied AI: pose estimation and biomechanics for lifting, velocity-based training from video, and generative models for synthetic autonomous-driving data.">
+    <meta name="author" content="Arturo Alcorta">
+    <link rel="canonical" href="https://arturoalcorta.github.io/projects/">
+
+    <!-- Link previews. These stay in the page rather than in site.js on purpose:
+         preview crawlers (LinkedIn, Slack, WhatsApp) do not run JavaScript. -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Arturo Alcorta">
+    <meta property="og:title" content="Arturo Alcorta | Personal Projects">
+    <meta property="og:description" content="Personal projects in applied AI: pose estimation and biomechanics for lifting, velocity-based training from video, and generative models for synthetic autonomous-driving data.">
+    <meta property="og:url" content="https://arturoalcorta.github.io/projects/">
+    <meta property="og:image" content="https://arturoalcorta.github.io/images/photo.jpg">
+    <meta property="og:image:width" content="1873">
+    <meta property="og:image:height" content="1873">
+    <meta name="twitter:card" content="summary">
+
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230f172a'/%3E%3Ctext x='16' y='22' font-family='system-ui,-apple-system,sans-serif' font-size='14' font-weight='700' fill='%23ffffff' text-anchor='middle'%3EAA%3C/text%3E%3C/svg%3E">
+
     <script src="https://cdn.tailwindcss.com"></script>
-    
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#3b82f6', // Un azul estándar
-                        dark: '#0f172a',    // Fondo muy oscuro (Slate-900)
-                        card: '#1e293b',    // Fondo de tarjetas (Slate-800)
-                        cyan: '#06b6d4',    // Para seccion de articulos publicados
-                        purple: '#8b5cf6',  // Para seccion de proyectos
-                    }
-                }
-            }
-        }
-    </script>
+    <script src="/assets/site.js"></script>
 </head>
 <body class="bg-dark text-gray-300 font-sans antialiased">
 
-    <nav class="max-w-5xl mx-auto p-6 flex justify-between items-center">
-        <div class="text-2xl font-bold text-white tracking-wider">
-            <a href="/" class="group">
-                <span class="group-hover:text-primary transition">AA<span class="text-primary">.dev</span></span>
-            </a>
-        </div>
-        <div class="space-x-6 hidden md:block">
-            <a href="#proyectos" class="hover:text-purple transition">Projects</a>
-            <a href="/articles" class="hover:text-cyan transition">Published Articles</a>
-        </div>
-    </nav>
+    <div data-site-nav></div>
 
     <section id="proyectos" class="max-w-5xl mx-auto px-6 py-12">
 
-        <h2 class="text-3xl font-bold text-white mb-10 flex items-center gap-2">
+        <h2 class="text-3xl font-bold text-white mb-4 flex items-center gap-2">
             <span class="w-8 h-1 bg-purple rounded-full"></span> Personal Projects
         </h2>
+
+        <p class="text-gray-400 leading-relaxed max-w-3xl mb-12">
+            Everything I've built outside of work, grouped by the thread it belongs to.
+        </p>
         
-        <div>
-            <article class="bg-card p-6 rounded-xl border border-gray-700/50 hover:border-purple/50 transition group mb-4">
-
-                <h3 class="text-xl font-bold text-white mb-2 group-hover:text-purple transition">
-                    Masters Thesis: Exploring Low-Rank Adaptation for Generating Synthetic Autonomous Driving Data.
-                </h3>
-
-                <p class="text-gray-400 text-sm mb-4">
-                    Research projects focused on the application of Low-Rank Adaptation (LoRA) techniques to Stable Diffusion models for generating synthetic data in the autonomous driving domain.
-                </p>
-
-                <div class="flex gap-2 mb-6">
-                    <span class="text-xs px-2 py-1 bg-gray-700 rounded text-gray-300">LoRA</span>
-                    <span class="text-xs px-2 py-1 bg-gray-700 rounded text-gray-300">Stable Diffusion</span>
-                    <span class="text-xs px-2 py-1 bg-gray-700 rounded text-gray-300">Autonomous Driving</span>
-                </div>
-
-                <a href="/projects/tfm"
-                    class="text-purple text-sm font-medium hover:underline flex items-center gap-1">
-                    Read More
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                    </svg>
-                </a>
-
-            </article>
-
-            <article class="bg-card p-6 rounded-xl border border-gray-700/50 hover:border-purple/50 transition group mb-4">
-
-                <h3 class="text-xl font-bold text-white mb-2 group-hover:text-purple transition">
-                    Semi-Supervised Learning for Semantic Segmentation with Synthetic Images
-                </h3>
-
-                <p class="text-gray-400 text-sm mb-4">
-                    Personal continuation of the Masters Thesis. Explores semi-supervised learning with synthetic unlabeled images generated by fine-tuned diffusion models to improve semantic segmentation for autonomous driving.
-                </p>
-
-                <div class="flex gap-2 mb-6">
-                    <span class="text-xs px-2 py-1 bg-gray-700 rounded text-gray-300">Semi-Supervised Learning</span>
-                    <span class="text-xs px-2 py-1 bg-gray-700 rounded text-gray-300">Semantic Segmentation</span>
-                    <span class="text-xs px-2 py-1 bg-gray-700 rounded text-gray-300">Synthetic Data</span>
-                </div>
-
-                <a href="/projects/semi-supervised"
-                    class="text-purple text-sm font-medium hover:underline flex items-center gap-1">
-                    Read More
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                    </svg>
-                </a>
-
-            </article>
+        <div class="mb-12">
+            <h3 class="text-lg font-bold text-white mb-2 flex items-center gap-2">
+                <span class="w-4 h-0.5 bg-purple rounded-full"></span> AI Applied to Training
+            </h3>
+            <p class="text-gray-500 text-sm leading-relaxed mb-6 max-w-3xl">
+                Computer vision and biomechanics turned into something a lifter can act on. It began as one app; two of its pieces have since become projects in their own right.
+            </p>
 
             <article class="bg-card p-6 rounded-xl border border-gray-700/50 hover:border-purple/50 transition group mb-4">
 
@@ -117,36 +69,6 @@
                 </div>
 
                 <a href="/projects/trainer-app"
-                    class="text-purple text-sm font-medium hover:underline flex items-center gap-1">
-                    Read More
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                    </svg>
-                </a>
-
-            </article>
-
-            <article class="bg-card p-6 rounded-xl border border-gray-700/50 hover:border-purple/50 transition group mb-4">
-
-                <h3 class="text-xl font-bold text-white mb-2 group-hover:text-purple transition">
-                    VBT Tracker
-                </h3>
-
-                <p class="text-gray-400 text-sm mb-4">
-                    Velocity-based training from a phone video. A <b>YOLO segmentation model</b> tracks the weight plate — whose
-                    45&nbsp;cm diameter doubles as the pixel-to-metre scale — to measure bar speed, phase timings and estimated RIR
-                    per repetition, replacing a several-hundred-euro linear encoder.
-                </p>
-
-                <div class="flex flex-wrap gap-2 mb-6">
-                    <span class="text-xs px-2 py-1 bg-gray-700 rounded text-gray-300">Computer Vision</span>
-                    <span class="text-xs px-2 py-1 bg-gray-700 rounded text-gray-300">YOLO Segmentation</span>
-                    <span class="text-xs px-2 py-1 bg-gray-700 rounded text-gray-300">FastAPI</span>
-                    <span class="text-xs px-2 py-1 bg-gray-700 rounded text-gray-300">Celery</span>
-                    <span class="text-xs px-2 py-1 bg-gray-700 rounded text-gray-300">Docker</span>
-                </div>
-
-                <a href="/projects/vbt-tracker"
                     class="text-purple text-sm font-medium hover:underline flex items-center gap-1">
                     Read More
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -189,6 +111,106 @@
             <article class="bg-card p-6 rounded-xl border border-gray-700/50 hover:border-purple/50 transition group mb-4">
 
                 <h3 class="text-xl font-bold text-white mb-2 group-hover:text-purple transition">
+                    VBT Tracker
+                </h3>
+
+                <p class="text-gray-400 text-sm mb-4">
+                    Velocity-based training from a phone video. A <b>YOLO segmentation model</b> tracks the weight plate — whose
+                    45&nbsp;cm diameter doubles as the pixel-to-metre scale — to measure bar speed, phase timings and estimated RIR
+                    per repetition, replacing a several-hundred-euro linear encoder.
+                </p>
+
+                <div class="flex flex-wrap gap-2 mb-6">
+                    <span class="text-xs px-2 py-1 bg-gray-700 rounded text-gray-300">Computer Vision</span>
+                    <span class="text-xs px-2 py-1 bg-gray-700 rounded text-gray-300">YOLO Segmentation</span>
+                    <span class="text-xs px-2 py-1 bg-gray-700 rounded text-gray-300">FastAPI</span>
+                    <span class="text-xs px-2 py-1 bg-gray-700 rounded text-gray-300">Celery</span>
+                    <span class="text-xs px-2 py-1 bg-gray-700 rounded text-gray-300">Docker</span>
+                </div>
+
+                <a href="/projects/vbt-tracker"
+                    class="text-purple text-sm font-medium hover:underline flex items-center gap-1">
+                    Read More
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
+                </a>
+
+            </article>
+        </div>
+
+        <div class="mb-12">
+            <h3 class="text-lg font-bold text-white mb-2 flex items-center gap-2">
+                <span class="w-4 h-0.5 bg-primary rounded-full"></span> Generative &amp; Semi-Supervised Vision
+            </h3>
+            <p class="text-gray-500 text-sm leading-relaxed mb-6 max-w-3xl">
+                Perception models are perpetually short of annotated data. Both of these ask whether a diffusion model can manufacture it — and whether the result is good enough to train on.
+            </p>
+
+            <article class="bg-card p-6 rounded-xl border border-gray-700/50 hover:border-primary/50 transition group mb-4">
+
+                <h3 class="text-xl font-bold text-white mb-2 group-hover:text-primary transition">
+                    Masters Thesis: Exploring Low-Rank Adaptation for Generating Synthetic Autonomous Driving Data.
+                </h3>
+
+                <p class="text-gray-400 text-sm mb-4">
+                    Research projects focused on the application of Low-Rank Adaptation (LoRA) techniques to Stable Diffusion models for generating synthetic data in the autonomous driving domain.
+                </p>
+
+                <div class="flex gap-2 mb-6">
+                    <span class="text-xs px-2 py-1 bg-gray-700 rounded text-gray-300">LoRA</span>
+                    <span class="text-xs px-2 py-1 bg-gray-700 rounded text-gray-300">Stable Diffusion</span>
+                    <span class="text-xs px-2 py-1 bg-gray-700 rounded text-gray-300">Autonomous Driving</span>
+                </div>
+
+                <a href="/projects/tfm"
+                    class="text-primary text-sm font-medium hover:underline flex items-center gap-1">
+                    Read More
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
+                </a>
+
+            </article>
+
+            <article class="bg-card p-6 rounded-xl border border-gray-700/50 hover:border-primary/50 transition group mb-4">
+
+                <h3 class="text-xl font-bold text-white mb-2 group-hover:text-primary transition">
+                    Semi-Supervised Learning for Semantic Segmentation with Synthetic Images
+                </h3>
+
+                <p class="text-gray-400 text-sm mb-4">
+                    Personal continuation of the Masters Thesis. Explores semi-supervised learning with synthetic unlabeled images generated by fine-tuned diffusion models to improve semantic segmentation for autonomous driving.
+                </p>
+
+                <div class="flex gap-2 mb-6">
+                    <span class="text-xs px-2 py-1 bg-gray-700 rounded text-gray-300">Semi-Supervised Learning</span>
+                    <span class="text-xs px-2 py-1 bg-gray-700 rounded text-gray-300">Semantic Segmentation</span>
+                    <span class="text-xs px-2 py-1 bg-gray-700 rounded text-gray-300">Synthetic Data</span>
+                </div>
+
+                <a href="/projects/semi-supervised"
+                    class="text-primary text-sm font-medium hover:underline flex items-center gap-1">
+                    Read More
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
+                </a>
+
+            </article>
+        </div>
+
+        <div class="mb-12">
+            <h3 class="text-lg font-bold text-white mb-2 flex items-center gap-2">
+                <span class="w-4 h-0.5 bg-cyan rounded-full"></span> Side Projects
+            </h3>
+            <p class="text-gray-500 text-sm leading-relaxed mb-6 max-w-3xl">
+                Smaller things built for the fun of it, mostly out of hobbies.
+            </p>
+
+            <article class="bg-card p-6 rounded-xl border border-gray-700/50 hover:border-cyan/50 transition group mb-4">
+
+                <h3 class="text-xl font-bold text-white mb-2 group-hover:text-cyan transition">
                     LoL Esports Win Prediction
                 </h3>
 
@@ -204,7 +226,7 @@
 
                 <a href="https://github.com/ArturoAlcorta/LoLEsports-win-prediction"
                     target="_blank"
-                    class="text-purple text-sm font-medium hover:underline flex items-center gap-1">
+                    class="text-cyan text-sm font-medium hover:underline flex items-center gap-1">
                     Explore Code
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
@@ -213,9 +235,9 @@
 
             </article>
 
-            <article class="bg-card p-6 rounded-xl border border-gray-700/50 hover:border-primary/50 transition group">
+            <article class="bg-card p-6 rounded-xl border border-gray-700/50 hover:border-cyan/50 transition group mb-4">
 
-                <h3 class="text-xl font-bold text-white mb-2 group-hover:text-primary transition">
+                <h3 class="text-xl font-bold text-white mb-2 group-hover:text-cyan transition">
                     DnD Map Assistant
                 </h3>
 
@@ -231,7 +253,7 @@
 
                 <a href="https://github.com/ArturoAlcorta/DnD-Map-Assistant"
                     target="_blank"
-                    class="text-purple text-sm font-medium hover:underline flex items-center gap-1">
+                    class="text-cyan text-sm font-medium hover:underline flex items-center gap-1">
                     Explore Code
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
@@ -242,9 +264,7 @@
         </div>
     </section>
 
-    <footer class="border-t border-gray-800 py-10 text-center text-gray-500 text-sm">
-        <p>&copy; Arturo Alcorta </p>
-    </footer>
+    <div data-site-footer></div>
 
 </body>
 </html>
