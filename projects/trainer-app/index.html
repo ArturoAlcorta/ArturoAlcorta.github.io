@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Arturo Alcorta | TrAIner App</title>
+    <title>Arturo Alcorta | trAIner</title>
     <meta name="description" content="trAIner: a full-stack AI personal training app with pose estimation and Dynamic Time Warping technique scoring. Now publicly available on the App Store and Google Play.">
     <meta name="author" content="Arturo Alcorta">
     <link rel="canonical" href="https://arturoalcorta.github.io/projects/trainer-app/">
@@ -13,7 +13,7 @@
          preview crawlers (LinkedIn, Slack, WhatsApp) do not run JavaScript. -->
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="Arturo Alcorta">
-    <meta property="og:title" content="Arturo Alcorta | TrAIner App">
+    <meta property="og:title" content="Arturo Alcorta | trAIner">
     <meta property="og:description" content="trAIner: a full-stack AI personal training app with pose estimation and Dynamic Time Warping technique scoring. Now publicly available on the App Store and Google Play.">
     <meta property="og:url" content="https://arturoalcorta.github.io/projects/trainer-app/">
     <meta property="og:image" content="https://arturoalcorta.github.io/images/photo.jpg">
@@ -46,65 +46,86 @@
                 <span class="text-xs px-2 py-1 bg-gray-700 rounded text-gray-300">FastAPI</span>
                 <span class="text-xs px-2 py-1 bg-gray-700 rounded text-gray-300">PostgreSQL</span>
                 <span class="text-xs px-2 py-1 bg-gray-700 rounded text-gray-300">Pose Estimation</span>
+                <span class="text-xs px-2 py-1 bg-gray-700 rounded text-gray-300">LLM Agent</span>
                 <span class="text-xs px-2 py-1 bg-gray-700 rounded text-gray-300">HTMX</span>
                 <span class="text-xs px-2 py-1 bg-gray-700 rounded text-gray-300">Celery</span>
+                <span class="text-xs px-2 py-1 bg-gray-700 rounded text-gray-300">PWA</span>
                 <span class="text-xs px-2 py-1 bg-gray-700 rounded text-gray-300">Docker</span>
             </div>
 
             <h1 class="text-3xl md:text-4xl font-bold text-white mb-2 leading-tight">
-                TrAIner App
+                trAIner
             </h1>
-            <p class="text-primary font-mono text-sm mb-6">Personal training · AI movement analysis · live on iOS &amp; Android</p>
+            <p class="text-primary font-mono text-sm mb-6">Workout planner · two AI pipelines · live on iOS &amp; Android</p>
 
             <p class="text-gray-400 text-lg leading-relaxed">
-                A full-stack personal training application built around AI-powered movement analysis.
-                TrAIner uses pose detection and dynamic time warping to assess exercise technique in real time,
-                comparing each rep against professional reference executions. After a private beta with 20 users, it is now
-                <span class="text-white">publicly released on both the App Store and Google Play</span>.
+                A FastAPI + HTMX web app — installable as a PWA — for building routines, logging sessions and getting
+                two genuinely different kinds of AI feedback: an <span class="text-white">LLM that reads a finished
+                session</span> and returns progression changes you can apply in one tap, and a
+                <span class="text-white">computer-vision pipeline</span> that scores your lifting technique from an
+                uploaded video. Bilingual throughout (EN/ES). After a private beta with 20 users, it is now publicly
+                released on both the App Store and Google Play.
             </p>
         </div>
 
-        <!-- AI Movement Analysis -->
-        <section class="mb-8">
+        <!-- The two AI pipelines -->
+        <section class="mb-10">
             <h2 class="text-xl font-bold text-white mb-4 flex items-center gap-2">
                 <span class="w-6 h-1 bg-primary rounded-full"></span>
-                AI Movement Analysis Pipeline
+                The Two AI Pipelines
             </h2>
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                <div class="bg-card rounded-xl border border-primary/30 p-6 space-y-4">
-                    <div class="group">
-                        <h3 class="text-white font-semibold mb-2 flex items-center gap-2 group-hover:text-primary transition">
-                            <span class="text-primary text-xs">01</span> High-Fidelity Estimation
-                        </h3>
-                        <p class="text-gray-400 text-sm leading-relaxed">
-                            Utilizes a top-down pipeline: <span class="text-white">YOLOv11</span> for person detection followed by <span class="text-white">SynthPose (ViTPose-Huge)</span> for extracting 50+ high-precision anatomical keypoints. An IoUTracker maintains identity across frames to isolate the athlete.
-                        </p>
+            <p class="text-gray-400 text-sm leading-relaxed mb-4">
+                They answer different questions, run on different hardware and reach the browser by different routes.
+                Neither runs inside the request: both are enqueued to Celery, one on a
+                <span class="text-white">CPU queue</span> and one on a <span class="text-white">GPU queue</span>.
+            </p>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                <div class="bg-card rounded-xl border border-primary/30 p-6">
+                    <div class="flex items-center gap-2 mb-3">
+                        <span class="text-primary text-xs font-mono">01</span>
+                        <h3 class="text-white font-semibold">Session analysis — LLM</h3>
                     </div>
-                    <div class="group">
-                        <h3 class="text-white font-semibold mb-2 flex items-center gap-2 group-hover:text-primary transition">
-                            <span class="text-primary text-xs">02</span> Temporal Alignment (DTW)
-                        </h3>
-                        <p class="text-gray-400 text-sm leading-relaxed">
-                            Employs <span class="text-white">Dynamic Time Warping (DTW)</span> to compare user reps against professional references. This allows for accurate technique scoring regardless of the repetition speed, focusing on the biomechanical path.
-                        </p>
-                    </div>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-3">
+                        When you end a session, the app builds a payload of what you actually lifted — sets, targets,
+                        recent history, estimated 1RM — and hands it to a <span class="text-white">Claude Haiku</span>
+                        agent through <code class="text-gray-200">pydantic-ai</code> with a typed
+                        <code class="text-gray-200">output_type</code>, so what comes back is
+                        <span class="text-white">structured and validated</span>, not prose to be parsed. Each
+                        per-exercise verdict is an action plus concrete targets, which the UI turns into a one-tap edit
+                        of your routine. Results stream into the page over SSE.
+                    </p>
+                    <p class="text-gray-500 text-xs leading-relaxed">
+                        The progression rules — conservative overload, deload conditions, unilateral balance — live in
+                        the system prompt rather than in the model's assumptions. The payload carries
+                        <span class="text-gray-300">only training data</span>: no name, no email, no identifiers.
+                    </p>
                 </div>
-                <div class="bg-card rounded-xl border border-gray-700/50 p-6">
-                    <h3 class="text-white font-semibold mb-4 text-sm">Core Pipeline Logic</h3>
-                    <ul class="space-y-3">
-                        <li class="flex gap-3 items-start text-xs text-gray-400">
-                            <span class="text-primary shrink-0">✔</span>
-                            <span><strong class="text-gray-200">Asynchronous Inference:</strong> Heavy GPU tasks are decoupled via Celery workers to maintain API responsiveness.</span>
-                        </li>
-                        <li class="flex gap-3 items-start text-xs text-gray-400">
-                            <span class="text-primary shrink-0">✔</span>
-                            <span><strong class="text-gray-200">Multi-Mode Scoring:</strong> Invariant analysis using joint angles for proportional consistency across users.</span>
-                        </li>
-                        <li class="flex gap-3 items-start text-xs text-gray-400">
-                            <span class="text-primary shrink-0">✔</span>
-                            <span><strong class="text-gray-200">Bilateral Averaging:</strong> Specialized logic for exercises like Bench Press to generate a global form score.</span>
-                        </li>
-                    </ul>
+
+                <div class="bg-card rounded-xl border border-primary/30 p-6">
+                    <div class="flex items-center gap-2 mb-3">
+                        <span class="text-primary text-xs font-mono">02</span>
+                        <h3 class="text-white font-semibold">Technique analysis — computer vision</h3>
+                    </div>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-3">
+                        Upload a video of a set and a GPU worker runs it end to end: preprocess to 15&nbsp;fps and
+                        ≤1920&nbsp;px, <span class="text-white">YOLO11m</span> person detection with IoU tracking to hold
+                        onto the right athlete, then <span class="text-white">SynthPose (ViTPose-Huge)</span> for 52
+                        keypoints — including the anatomical spine markers COCO-17 doesn't have. The skeleton is
+                        normalized (pelvis origin, torso scale, mirroring) so the numbers survive differences in body
+                        size and camera distance, and a 4-state hysteresis machine counts the reps.
+                    </p>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-3">
+                        Scoring is <span class="text-white">per exercise, not one method for everything</span>: squat
+                        and RDL are judged on relational metrics between joints, while bench press uses DTW against
+                        reference reps plus left/right symmetry. Out come an annotated <code class="text-gray-200">pose.mp4</code>,
+                        per-stage JSON artifacts, and named bilingual fault cues from a rule-based feedback service.
+                    </p>
+                    <p class="text-gray-500 text-xs leading-relaxed">
+                        This engine has since been extracted into a standalone project —
+                        <a href="/projects/gym-technique-analyzer" class="text-primary hover:underline">Gym Technique Analyzer</a>,
+                        where the metrics and the reference set are documented in full.
+                    </p>
                 </div>
             </div>
         </section>
@@ -113,49 +134,83 @@
         <section class="mb-10">
             <h2 class="text-xl font-bold text-white mb-4 flex items-center gap-2">
                 <span class="w-6 h-1 bg-primary rounded-full"></span>
-                Features
+                The App Around Them
             </h2>
             <div class="grid md:grid-cols-2 gap-4">
                 <div class="bg-card rounded-xl border border-gray-700/50 p-5">
                     <h3 class="text-white font-semibold mb-2 text-sm flex items-center gap-2">
-                        <span class="text-primary">◈</span> Routine & Session Management
+                        <span class="text-primary">◈</span> Routine Builder &amp; Session Logging
                     </h3>
                     <p class="text-gray-400 text-xs leading-relaxed">
-                        Create custom workout routines with per-exercise set structure: weight ranges, rep ranges,
-                        RIR (Reps In Reserve), RPE, and rest timers. Track each session live — the app logs what you
-                        actually lifted versus what was planned, with full support for unilateral exercises
-                        (left/right side independently).
+                        Drag-and-drop routine building in HTMX, with per-set weight, reps, RPE, RIR and rest. Sessions
+                        are logged live against the plan — what you actually lifted versus what was prescribed — and the
+                        rest timer fires a <strong class="text-gray-200">Web Push notification</strong> that still
+                        arrives with the app in the background.
                     </p>
                 </div>
                 <div class="bg-card rounded-xl border border-gray-700/50 p-5">
                     <h3 class="text-white font-semibold mb-2 text-sm flex items-center gap-2">
-                        <span class="text-primary">◈</span> Progression Tracking & 1RM
+                        <span class="text-primary">◈</span> Progression &amp; Estimated 1RM
                     </h3>
                     <p class="text-gray-400 text-xs leading-relaxed">
-                        Automatically calculates your estimated 1-rep max (1RM) from session data. Tracks personal
-                        records with visual indicators and maintains a full performance history so you can see
-                        exactly how your strength evolves over time.
+                        Estimated 1RM per exercise over time via a <strong class="text-gray-200">modified Epley</strong>
+                        formula, plotted as a history you can actually read a trend off. Unilateral work keeps left and
+                        right as separate series rather than averaging away the imbalance you were trying to see.
                     </p>
                 </div>
                 <div class="bg-card rounded-xl border border-gray-700/50 p-5">
                     <h3 class="text-white font-semibold mb-2 text-sm flex items-center gap-2">
-                        <span class="text-primary">◈</span> Social Layer
+                        <span class="text-primary">◈</span> Bilingual Exercise Library
                     </h3>
                     <p class="text-gray-400 text-xs leading-relaxed">
-                        Follow other users, browse a social feed of their sessions, and share routines.
-                        Includes a follow-request system for private profiles, session likes, and
-                        user search — the training equivalent of a social fitness network.
+                        Filterable by muscle group, equipment and type, with bilateral, unilateral and temporal
+                        execution modes — every entry in both English and Spanish. Users can suggest missing exercises,
+                        which land in an admin queue for approval before they reach the catalog.
                     </p>
                 </div>
-                <div class="bg-card rounded-xl border border-gray-700/50 p-5 relative">
+                <div class="bg-card rounded-xl border border-gray-700/50 p-5">
                     <h3 class="text-white font-semibold mb-2 text-sm flex items-center gap-2">
-                        <span class="text-primary">◈</span> AI Post-session Agent
+                        <span class="text-primary">◈</span> Social Layer &amp; PWA
                     </h3>
                     <p class="text-gray-400 text-xs leading-relaxed">
-                        An AI agent that reviews your completed session data — volume, intensity, technique scores —
-                        and generates high-fidelity, personalised progression recommendations based on your performance data for the next workout.
+                        Follow other users, like their sessions, share and adopt routines, and compare on per-exercise
+                        leaderboards. The whole thing installs as a <strong class="text-gray-200">PWA</strong> on iOS
+                        and Android — manifest, service worker and an offline fallback page.
                     </p>
                 </div>
+            </div>
+        </section>
+
+        <!-- Architecture -->
+        <section class="mb-10">
+            <h2 class="text-xl font-bold text-white mb-4 flex items-center gap-2">
+                <span class="w-6 h-1 bg-primary rounded-full"></span>
+                Architecture
+            </h2>
+            <div class="bg-card rounded-xl border border-gray-700/50 p-6">
+                <p class="text-gray-400 text-sm leading-relaxed mb-4">
+                    The app is <span class="text-white">HTML-first</span>: almost every endpoint returns a Jinja2 partial
+                    that HTMX swaps into the page, so there is no client-side state to keep in sync with the server's.
+                    Anything slow is never done in the request — it is enqueued to Celery and delivered back over SSE
+                    (session analysis) or polling (technique analysis). Layering is strict:
+                    <code class="text-gray-200">routes/ → services/ → models/</code>.
+                </p>
+                <pre class="text-[11px] md:text-xs font-mono text-gray-500 leading-relaxed overflow-x-auto">browser (HTMX + service worker)
+   |  HTMX partials + SSE
+   v
+Cloudflare Tunnel -> FastAPI
+                       |
+                       +--> PostgreSQL 15 . Redis . file storage
+                       |
+                       +--> Redis queues
+                              |
+                              +--> GPU worker x2   pose + scoring
+                              +--> CPU worker x8   LLM + Web Push</pre>
+                <p class="text-gray-500 text-xs leading-relaxed mt-4">
+                    The two worker pools are separate on purpose: pose estimation would otherwise monopolise the same
+                    processes that send notifications and call the LLM. Migrations run on container start
+                    (<code class="text-gray-300">alembic upgrade head</code>), so deploying is pull-and-up.
+                </p>
             </div>
         </section>
 
@@ -170,32 +225,47 @@
                     <div>
                         <p class="text-gray-500 text-xs uppercase tracking-wider mb-1">Backend</p>
                         <p class="text-white font-medium">FastAPI</p>
-                        <p class="text-gray-400 text-xs">Python, SQLAlchemy, Celery</p>
-                    </div>
-                    <div>
-                        <p class="text-gray-500 text-xs uppercase tracking-wider mb-1">Database</p>
-                        <p class="text-white font-medium">PostgreSQL 15</p>
-                        <p class="text-gray-400 text-xs">Redis for async queues</p>
+                        <p class="text-gray-400 text-xs">SQLAlchemy 2.0, Alembic</p>
                     </div>
                     <div>
                         <p class="text-gray-500 text-xs uppercase tracking-wider mb-1">Frontend</p>
                         <p class="text-white font-medium">HTMX + Jinja2</p>
-                        <p class="text-gray-400 text-xs">Tailwind CSS, PWA</p>
+                        <p class="text-gray-400 text-xs">Tailwind, SSE, PWA</p>
                     </div>
                     <div>
-                        <p class="text-gray-500 text-xs uppercase tracking-wider mb-1">AI / CV</p>
-                        <p class="text-white font-medium">YOLO11 + DTW</p>
-                        <p class="text-gray-400 text-xs">Pose estimation pipeline</p>
+                        <p class="text-gray-500 text-xs uppercase tracking-wider mb-1">Data</p>
+                        <p class="text-white font-medium">PostgreSQL 15</p>
+                        <p class="text-gray-400 text-xs">Redis broker + backend</p>
+                    </div>
+                    <div>
+                        <p class="text-gray-500 text-xs uppercase tracking-wider mb-1">Computer vision</p>
+                        <p class="text-white font-medium">YOLO11m + SynthPose</p>
+                        <p class="text-gray-400 text-xs">PyTorch, OpenCV, dtw-python</p>
+                    </div>
+                    <div>
+                        <p class="text-gray-500 text-xs uppercase tracking-wider mb-1">LLM</p>
+                        <p class="text-white font-medium">Claude Haiku</p>
+                        <p class="text-gray-400 text-xs">pydantic-ai, typed output</p>
+                    </div>
+                    <div>
+                        <p class="text-gray-500 text-xs uppercase tracking-wider mb-1">Queue</p>
+                        <p class="text-white font-medium">Celery 5.6</p>
+                        <p class="text-gray-400 text-xs">split GPU / CPU queues</p>
                     </div>
                     <div>
                         <p class="text-gray-500 text-xs uppercase tracking-wider mb-1">Auth</p>
-                        <p class="text-white font-medium">Google OAuth</p>
-                        <p class="text-gray-400 text-xs">Session-based middleware</p>
+                        <p class="text-white font-medium">Session cookies</p>
+                        <p class="text-gray-400 text-xs">bcrypt, Google, Apple</p>
                     </div>
                     <div>
-                        <p class="text-gray-500 text-xs uppercase tracking-wider mb-1">Infra</p>
+                        <p class="text-gray-500 text-xs uppercase tracking-wider mb-1">Notifications</p>
+                        <p class="text-white font-medium">Web Push</p>
+                        <p class="text-gray-400 text-xs">VAPID, pywebpush</p>
+                    </div>
+                    <div>
+                        <p class="text-gray-500 text-xs uppercase tracking-wider mb-1">Ops</p>
                         <p class="text-white font-medium">Docker Compose</p>
-                        <p class="text-gray-400 text-xs">Prometheus metrics</p>
+                        <p class="text-gray-400 text-xs">Cloudflare Tunnel; Prometheus, Loki, Grafana</p>
                     </div>
                 </div>
             </div>
@@ -211,7 +281,7 @@
                     <div>
                         <p class="text-emerald-400 font-semibold text-sm mb-1">Out now on the App Store &amp; Google Play</p>
                         <p class="text-gray-400 text-sm">
-                            TrAIner has left its private beta and is publicly available. Pick the store for your device below —
+                            trAIner has left its private beta and is publicly available. Pick the store for your device below —
                             or use it straight from the browser at <a href="https://www.trainer-app.net" target="_blank" rel="noopener" class="text-white hover:underline">trainer-app.net</a>.
                         </p>
                     </div>
@@ -248,9 +318,12 @@
                 <div>
                     <h4 class="text-amber-200 font-bold mb-2">Project Access & Code Privacy</h4>
                     <p class="text-amber-400/80 text-sm leading-relaxed">
-                        trAIner is currently a live, production-ready application. For this reason, the full source code is not public. 
-                        However, I am more than happy to discuss the <strong class="text-amber-200">system architecture, the mathematical approach behind the DTW scoring, or the ML pipeline</strong> 
-                        with anyone interested in a deep technical conversation.
+                        trAIner is a live application with real users, so the full source code is not public.
+                        The computer-vision half of it is, though —
+                        <a href="/projects/gym-technique-analyzer" class="text-amber-200 underline hover:text-amber-100">Gym Technique Analyzer</a>
+                        is the same engine, extracted and documented. Beyond that I'm happy to talk through the
+                        <strong class="text-amber-200">system architecture, the per-exercise scoring, or how the LLM pipeline is
+                        constrained to structured output</strong> with anyone interested in a deep technical conversation.
                     </p>
                     <div class="mt-4 flex gap-4">
                         <a href="https://www.trainer-app.net" target="_blank" class="text-white text-xs font-bold px-4 py-2 bg-amber-600 hover:bg-amber-500 rounded-lg transition-colors">

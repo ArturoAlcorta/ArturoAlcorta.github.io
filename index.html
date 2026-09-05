@@ -180,7 +180,7 @@
             <span class="w-8 h-1 bg-purple rounded-full"></span> Personal Projects
         </h2>
 
-        <p class="text-gray-400 leading-relaxed max-w-3xl mb-10">
+        <p class="text-gray-400 leading-relaxed mb-10">
             Two threads run through most of what I build. One is <span class="text-white">AI applied to training</span> —
             pose estimation, biomechanics and video pipelines that turn a phone clip into numbers a lifter can act on.
             The other is <span class="text-white">generative and semi-supervised computer vision</span>, which grew out
@@ -200,29 +200,30 @@
                      class="w-20 h-20 sm:w-28 sm:h-28 shrink-0 rounded-2xl border border-emerald-500/20 shadow-lg shadow-black/40">
 
               <div class="min-w-0">
-                <div class="flex flex-wrap items-center gap-2 mb-3">
+                <div class="flex flex-wrap items-center gap-x-3 gap-y-2 mb-3">
+                    <h3 class="text-2xl md:text-3xl font-bold text-white group-hover:text-emerald-400 transition">
+                        trAIner
+                    </h3>
                     <span class="text-[10px] px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 font-mono uppercase tracking-wider">Flagship · Live</span>
                     <span class="text-xs text-gray-500">Available on iOS &amp; Android</span>
                 </div>
 
-                <h3 class="text-2xl md:text-3xl font-bold text-white mb-3 group-hover:text-emerald-400 transition">
-                    trAIner
-                </h3>
-
-                <p class="text-gray-400 leading-relaxed mb-5 max-w-2xl">
-                    The project I've put the most into, and still do. A full-stack AI training app: routines and session
-                    tracking, estimated 1RM and progression history, a social feed — and an AI movement-analysis pipeline
-                    that scores your technique from video using 52-keypoint pose estimation and Dynamic Time Warping.
-                    Out of private beta and publicly released.
+                <p class="text-gray-400 leading-relaxed mb-5">
+                    The project I've put the most into, and still do. A full-stack training app — routine builder,
+                    session logging with a push-notified rest timer, estimated 1RM, a bilingual exercise library and a
+                    social layer — built around <span class="text-white">two AI pipelines</span>: an LLM that turns a
+                    finished session into progression changes you apply in one tap, and a computer-vision pipeline that
+                    scores your lifting technique from an uploaded video. Out of private beta and publicly released.
                 </p>
 
                 <div class="flex flex-wrap gap-2 mb-6">
                     <span class="text-xs px-2 py-1 bg-gray-700 rounded text-gray-300">FastAPI</span>
                     <span class="text-xs px-2 py-1 bg-gray-700 rounded text-gray-300">PostgreSQL</span>
                     <span class="text-xs px-2 py-1 bg-gray-700 rounded text-gray-300">Pose Estimation</span>
+                    <span class="text-xs px-2 py-1 bg-gray-700 rounded text-gray-300">LLM Agent</span>
                     <span class="text-xs px-2 py-1 bg-gray-700 rounded text-gray-300">HTMX</span>
                     <span class="text-xs px-2 py-1 bg-gray-700 rounded text-gray-300">Celery</span>
-                    <span class="text-xs px-2 py-1 bg-gray-700 rounded text-gray-300">Docker</span>
+                    <span class="text-xs px-2 py-1 bg-gray-700 rounded text-gray-300">PWA</span>
                 </div>
 
                 <div class="flex flex-wrap items-center gap-3">
