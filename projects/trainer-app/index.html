@@ -95,11 +95,15 @@
                         per-exercise verdict is an action plus concrete targets, which the UI turns into a one-tap edit
                         of your routine. Results stream into the page over SSE.
                     </p>
-                    <p class="text-gray-500 text-xs leading-relaxed">
+                    <p class="text-gray-500 text-xs leading-relaxed mb-4">
                         The progression rules — conservative overload, deload conditions, unilateral balance — live in
                         the system prompt rather than in the model's assumptions. The payload carries
                         <span class="text-gray-300">only training data</span>: no name, no email, no identifiers.
                     </p>
+                    <img src="/images/projects/trainer-ai-analysis.jpg"
+                         width="520" height="620"
+                         alt="The trAIner app showing an AI analysis card: an 'Increase weight' verdict with the reasoning, a suggested 82.5 kg for 8 reps, and an Apply button."
+                         class="w-full rounded-lg border border-gray-700/50" loading="lazy">
                 </div>
 
                 <div class="bg-card rounded-xl border border-primary/30 p-6">
@@ -121,11 +125,15 @@
                         reference reps plus left/right symmetry. Out come an annotated <code class="text-gray-200">pose.mp4</code>,
                         per-stage JSON artifacts, and named bilingual fault cues from a rule-based feedback service.
                     </p>
-                    <p class="text-gray-500 text-xs leading-relaxed">
+                    <p class="text-gray-500 text-xs leading-relaxed mb-4">
                         This engine has since been extracted into a standalone project —
                         <a href="/projects/gym-technique-analyzer" class="text-primary hover:underline">Gym Technique Analyzer</a>,
                         where the metrics and the reference set are documented in full.
                     </p>
+                    <img src="/images/projects/trainer-technique.jpg"
+                         width="520" height="620"
+                         alt="The trAIner app showing a bench press technique result: a global score of 100 out of 100 over 6 reps, with a per-rep breakdown of shoulder angle timings."
+                         class="w-full rounded-lg border border-gray-700/50" loading="lazy">
                 </div>
             </div>
         </section>
@@ -136,6 +144,34 @@
                 <span class="w-6 h-1 bg-primary rounded-full"></span>
                 The App Around Them
             </h2>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
+                <figure class="m-0">
+                    <img src="/images/projects/trainer-home.jpg" width="520" height="937"
+                         alt="trAIner home screen listing saved routines."
+                         class="w-full rounded-lg border border-gray-700/50" loading="lazy">
+                    <figcaption class="text-gray-500 text-[11px] mt-2">Routines</figcaption>
+                </figure>
+                <figure class="m-0">
+                    <img src="/images/projects/trainer-unilateral.jpg" width="520" height="937"
+                         alt="Session logging with separate left and right side entries for a unilateral exercise."
+                         class="w-full rounded-lg border border-gray-700/50" loading="lazy">
+                    <figcaption class="text-gray-500 text-[11px] mt-2">Unilateral sets</figcaption>
+                </figure>
+                <figure class="m-0">
+                    <img src="/images/projects/trainer-progression.jpg" width="520" height="937"
+                         alt="Estimated 1RM plotted over time for the incline dumbbell press, with a best of 72 kg."
+                         class="w-full rounded-lg border border-gray-700/50" loading="lazy">
+                    <figcaption class="text-gray-500 text-[11px] mt-2">1RM progression</figcaption>
+                </figure>
+                <figure class="m-0">
+                    <img src="/images/projects/trainer-social.jpg" width="520" height="937"
+                         alt="Social feed showing other users' finished sessions with a personal record badge."
+                         class="w-full rounded-lg border border-gray-700/50" loading="lazy">
+                    <figcaption class="text-gray-500 text-[11px] mt-2">Social feed</figcaption>
+                </figure>
+            </div>
+
             <div class="grid md:grid-cols-2 gap-4">
                 <div class="bg-card rounded-xl border border-gray-700/50 p-5">
                     <h3 class="text-white font-semibold mb-2 text-sm flex items-center gap-2">

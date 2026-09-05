@@ -57,6 +57,33 @@
             </p>
         </div>
 
+        <!-- Real vs generated -->
+        <section class="mb-10">
+            <div class="grid grid-cols-2 gap-3 mb-3">
+                <figure class="m-0">
+                    <img src="/images/projects/tfm-real.jpg" width="640" height="640"
+                         alt="A real urban driving frame from the Cityscapes dataset: a German street with trees, parked cars and a lorry, shot from behind a car's windscreen."
+                         class="w-full rounded-xl border border-gray-700/50">
+                    <figcaption class="text-gray-500 text-xs mt-2">
+                        <span class="text-gray-300">Real</span> — a Cityscapes frame (centre crop)
+                    </figcaption>
+                </figure>
+                <figure class="m-0">
+                    <img src="/images/projects/tfm-generated.jpg" width="640" height="640"
+                         alt="A synthetic urban driving scene produced by the fine-tuned diffusion model: a tree-lined street with parked cars, seen from the driver's viewpoint over the car's bonnet."
+                         class="w-full rounded-xl border border-purple/30">
+                    <figcaption class="text-gray-500 text-xs mt-2">
+                        <span class="text-purple">Generated</span> — LoRA fine-tuned Stable Diffusion
+                    </figcaption>
+                </figure>
+            </div>
+            <p class="text-gray-500 text-xs leading-relaxed">
+                Not a paired transformation — two independent samples, one drawn from the dataset and one produced from
+                a text prompt. Worth looking at the bottom edge of the generated frame: the model learned that every
+                image in this dataset is shot over the same car's bonnet, hood ornament included.
+            </p>
+        </section>
+
         <!-- Code notice -->
         <div class="bg-yellow-900/20 border border-yellow-700/40 rounded-xl p-4 mb-10 flex items-start gap-3">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-500 mt-0.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">

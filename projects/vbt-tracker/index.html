@@ -61,6 +61,28 @@
             </p>
         </div>
 
+        <!-- Detection shot -->
+        <div class="grid grid-cols-1 sm:grid-cols-[minmax(0,290px)_1fr] gap-6 items-center mb-10">
+            <figure class="m-0">
+                <img src="/images/projects/vbt-tracker-detection.jpg"
+                     width="720" height="1280"
+                     alt="A frame from a deadlift video with the segmentation model's output drawn on: the weight plate filled and outlined, its bounding box labelled 'Disk 0.98', and a measured width of 470 pixels annotated as 45 cm."
+                     class="w-full rounded-xl border border-gray-700/50">
+            </figure>
+            <div>
+                <p class="text-gray-400 text-sm leading-relaxed mb-3">
+                    The model's actual output on one frame: the plate mask, its box, and the confidence. Everything
+                    downstream rides on this one measurement.
+                </p>
+                <p class="text-gray-400 text-sm leading-relaxed">
+                    The plate comes out <span class="text-white">470 px across</span> here, and a competition plate is
+                    45 cm whatever weight is stamped on it — so this frame alone fixes the scale at
+                    <span class="text-white">0.96 mm per pixel</span>. That is the entire calibration step: no
+                    checkerboard, no known camera, no measuring anything in the room.
+                </p>
+            </div>
+        </div>
+
         <!-- Hero shot -->
         <figure class="mb-10">
             <img src="/images/projects/vbt-tracker-ui.png"
@@ -68,8 +90,8 @@
                  alt="The VBT Tracker web interface: a completed back squat run showing normalized bar height over time, with eccentric and concentric phases shaded, above a per-rep table of durations, velocities and estimated RIR."
                  class="w-full rounded-xl border border-gray-700/50">
             <figcaption class="text-gray-500 text-xs mt-3 leading-relaxed">
-                A finished run. The height curve is shaded per phase — eccentric in red, concentric in green —
-                and each rep's durations, velocities and RIR estimate land in the table underneath.
+                And the other end of the pipeline: a finished run. The height curve is shaded per phase — eccentric in
+                red, concentric in green — with each rep's durations, velocities and RIR estimate in the table underneath.
             </figcaption>
         </figure>
 
